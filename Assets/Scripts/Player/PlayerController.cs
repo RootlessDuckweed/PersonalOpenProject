@@ -1,42 +1,65 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
+
+using Player.State;
 using UnityEngine;
-using UnityEngine.EventSystems;
+
 using UnityEngine.InputSystem;
+
+using Utility;
 
 namespace Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : Entity
     {
         public PlayerInputSettings playerInput;
-        public Rigidbody2D rb;
-        public Animator anim;
         public float moveSpeed;
         public Vector2 inputDir;
         public float jumpForce;
-        public float checkGroundRadius;
-        
-        public bool isMoving;
-        public bool isFacingRight=true;
-        [Header("Check whether on the Ground")]
-        public bool isGrounded;
-        [SerializeField] private LayerMask whatIsGround;
-        private void Awake()
+        public bool isJump;
+        public bool isAir;
+
+        [Header("Dash Info")] 
+        public float dashColdTime;
+        public float dashColdTimeCounter;
+        public float dashContinueTime;
+        public float dashContinueTimeCounter;
+        public bool dashCold;
+        public float dashSpeed;
+        public bool isDashing;
+
+        [Header("Attack Info")]
+        public bool isAttacking;
+
+        [Header("State")]
+        public PlayerStateMachine stateMachine { get; private set; }
+        public PlayerIdleState idleState  { get; private set; }
+        public PlayerMoveState moveState  { get; private set; }
+        public PlayerJumpState jumpState { get; private set; }
+        public PlayerDashState dashState { get; private set; }
+        public PlayerAirState airState { get; private set; }
+
+        protected override void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            anim = GetComponentInChildren<Animator>();
+            base.Awake();
             playerInput = new PlayerInputSettings();
-            playerInput.GamePlay.Jump.performed += Jump;
+           
+            playerInput.GamePlay.Attack.performed += Attack;
+            stateMachine = new PlayerStateMachine();
+            idleState = new PlayerIdleState(this,this.stateMachine,"Idle");
+            moveState = new PlayerMoveState(this, this.stateMachine, "Move");
+            dashState = new PlayerDashState(this, this.stateMachine, "Dash");
+            jumpState = new PlayerJumpState(this, this.stateMachine, "Jump");
+            airState = new PlayerAirState(this, this.stateMachine, "Jump");
         }
 
-      
+        private void Start()
+        {
+            stateMachine.Initialize(idleState);
+        }
 
         private void OnEnable()
         {
             playerInput.GamePlay.Enable();
+
         }
 
         private void OnDisable()
@@ -44,44 +67,41 @@ namespace Player
             playerInput.GamePlay.Disable();
         }
 
-        private void Update()
+        protected override void Update()
         {
-            inputDir=playerInput.GamePlay.Move.ReadValue<Vector2>();
-            CheckPhysics();
-            Movement();
+            base.Update();
+            InputController();
             FlipController();
             AnimationController();
-            
+            DashTimeCounter();
+          
+            stateMachine.currentState.Update();
+        }
+
+        private void InputController()
+        {
+            inputDir = playerInput.GamePlay.Move.ReadValue<Vector2>();
         }
 
         private void FixedUpdate()
         {
-           
+
+        }
+        private void Attack(InputAction.CallbackContext obj)
+        {
+            if(!isDashing)
+                anim.SetTrigger("attack");
+            
         }
 
-        private void Movement()
-        {
-            rb.velocity = new Vector2(moveSpeed * inputDir.x, rb.velocity.y);
-        }
-         private void Jump(InputAction.CallbackContext obj)
-         {
-             if (isGrounded)
-             {
-                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-             }
-                
-         }
+        
+       
         private void AnimationController()
         {
-            anim.SetBool("isMoving",isMoving=rb.velocity.x!=0);
-           
+            anim.SetFloat("yVelocity",rb.velocity.y);
+           // anim.SetBool("isAttacking",isAttacking);
         }
-
-        private void Flip()
-        {
-            isFacingRight = !isFacingRight;
-            transform.Rotate(0,180,0);
-        }
+        
 
         private void FlipController()
         {
@@ -90,17 +110,41 @@ namespace Player
             else if(inputDir.x<0&& isFacingRight)
                 Flip();
         }
+        
 
-        private void OnDrawGizmosSelected()
+        private void DashTimeCounter()
         {
-            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x,transform.position.y-checkGroundRadius));
+            if (dashCold&&dashColdTimeCounter >0)
+            {
+                dashColdTimeCounter -= Time.deltaTime;
+                isDashing = false;
+                if (dashColdTimeCounter <= 0)
+                {
+                    dashCold = false;
+                    dashContinueTimeCounter = dashContinueTime;
+                    //dashTimeCounter = dashTimedura;
+                }
+
+            }
         }
 
-        private void CheckPhysics()
+       
+
+        #region Animation Event
+
+        public void AttackOver()
         {
-            isGrounded = Physics2D.Raycast(transform.position, Vector2.down, checkGroundRadius,whatIsGround);
-            
+            isAttacking = false;
         }
+
+        public void AttackBegin()
+        {
+            isAttacking = true;
+        }
+        
+        #endregion
+        
+        
     }
 }
 
