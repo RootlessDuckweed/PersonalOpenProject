@@ -26,12 +26,16 @@ namespace Player.State
             {
                 stateMachine.ChangeState(player.idleState);
             }
+            else if (!player.CheckGround())
+            {
+                stateMachine.ChangeState(player.airState);
+            }
         }
 
         public override void Exit()
         {
             base.Exit();
-            player.rb.velocity = new Vector2(0,player.rb.velocity.y);
+            //player.rb.velocity = new Vector2(0,player.rb.velocity.y);
         }
         private void Movement()
         {

@@ -7,8 +7,10 @@ namespace Utility
 {
     public class Entity : MonoBehaviour
     {
-        [SerializeField] public  Animator anim { get; private set; }
-        [SerializeField] public Rigidbody2D rb { get; private set; }
+        public  Animator anim { get; private set; }
+        public Rigidbody2D rb { get; private set; }
+        public EntityFX fx { get; private set; }
+
         [Header("Check whether on the Ground")]
         [SerializeField] protected LayerMask whatIsGround;
         [SerializeField] protected float checkGroundRadius;
@@ -25,18 +27,20 @@ namespace Utility
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponentInChildren<Animator>();
+            fx = GetComponent<EntityFX>();
+            
             if (wallCheck == null)
             {
                 wallCheck = transform;
             }
         }
-
+        
         protected virtual void Update()
         {
             //CheckPhysics();
         }
         
-        protected virtual void Flip()
+        public virtual void Flip()
         {
             isFacingRight = !isFacingRight;
             if (isFacingRight) 
@@ -67,5 +71,20 @@ namespace Utility
             Gizmos.DrawLine(wallCheck.position,new Vector3(wallCheck.position.x+checkWallRadius*facingDir,wallCheck.position.y));
         }
 
+        public void SetVelocity(float _velocityX,float _velocityY)
+        {
+            rb.velocity = new Vector2(_velocityX, _velocityY);
+        }
+
+        public void ZeroVelocity()
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+        public virtual void TakeDamage(GameObject enemy,float damage)
+        {
+            print("take damage : "+ damage+" from "+enemy);
+            fx.StartCoroutine("FlashHitFX");
+        }
     }
 }

@@ -13,6 +13,12 @@ namespace Player.State.SuperState
         {
             base.Enter(); 
             player.playerInput.GamePlay.Jump.performed += Jump;
+            player.playerInput.GamePlay.Attack.started += Attack;
+        }
+
+        private void Attack(InputAction.CallbackContext obj)
+        {
+            stateMachine.ChangeState(player.primaryAttackState);
         }
 
         public override void Update()
@@ -24,6 +30,7 @@ namespace Player.State.SuperState
         {
             base.Exit();
             player.playerInput.GamePlay.Jump.performed -= Jump;
+            player.playerInput.GamePlay.Attack.started -= Attack;
         }
         
         private void Jump(InputAction.CallbackContext obj)

@@ -19,9 +19,15 @@ namespace Player.State
         public override void Update()
         {
             base.Update();
+            player.ZeroVelocity();
             if (player.inputDir.x != 0)
             {
                 stateMachine.ChangeState(player.moveState);
+            }
+
+            if (!player.CheckGround())
+            {
+                stateMachine.ChangeState(player.airState);
             }
             
         }

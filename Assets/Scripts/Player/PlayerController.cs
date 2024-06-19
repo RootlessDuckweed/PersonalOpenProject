@@ -36,19 +36,26 @@ namespace Player
         public PlayerJumpState jumpState { get; private set; }
         public PlayerDashState dashState { get; private set; }
         public PlayerAirState airState { get; private set; }
-
+        public PlayerWallSlideState wallSlideState { get; private set; }
+        public PlayerWallJumpState wallJumpState { get; private set; }
+        public PlayerPrimaryAttackState primaryAttackState { get; private set; }
+ 
         protected override void Awake()
         {
             base.Awake();
             playerInput = new PlayerInputSettings();
            
-            playerInput.GamePlay.Attack.performed += Attack;
+            //playerInput.GamePlay.Attack.performed += Attack;
+            
             stateMachine = new PlayerStateMachine();
             idleState = new PlayerIdleState(this,this.stateMachine,"Idle");
             moveState = new PlayerMoveState(this, this.stateMachine, "Move");
             dashState = new PlayerDashState(this, this.stateMachine, "Dash");
             jumpState = new PlayerJumpState(this, this.stateMachine, "Jump");
             airState = new PlayerAirState(this, this.stateMachine, "Jump");
+            wallSlideState = new PlayerWallSlideState(this, this.stateMachine, "WallSlide");
+            wallJumpState = new PlayerWallJumpState(this, this.stateMachine, "Jump");
+            primaryAttackState = new PlayerPrimaryAttackState(this, this.stateMachine, "Attack");
         }
 
         private void Start()
@@ -78,6 +85,7 @@ namespace Player
             stateMachine.currentState.Update();
         }
 
+
         private void InputController()
         {
             inputDir = playerInput.GamePlay.Move.ReadValue<Vector2>();
@@ -87,13 +95,6 @@ namespace Player
         {
 
         }
-        private void Attack(InputAction.CallbackContext obj)
-        {
-            if(!isDashing)
-                anim.SetTrigger("attack");
-            
-        }
-
         
        
         private void AnimationController()
@@ -128,19 +129,12 @@ namespace Player
             }
         }
 
+        
        
 
         #region Animation Event
-
-        public void AttackOver()
-        {
-            isAttacking = false;
-        }
-
-        public void AttackBegin()
-        {
-            isAttacking = true;
-        }
+        
+        public void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
         
         #endregion
         

@@ -22,6 +22,10 @@ namespace Player.State
             {
                 stateMachine.ChangeState(player.idleState);
             }
+            else if (player.CheckWall()&&player.inputDir.x==0)
+            {
+                stateMachine.ChangeState(player.wallSlideState);
+            }
         }
 
         public override void Exit()
