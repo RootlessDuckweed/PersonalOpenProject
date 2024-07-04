@@ -7,7 +7,7 @@ namespace Enemy
         protected EnemyStateMachine stateMachine;
         protected Enemy enemyBase;
         protected bool triggerCalled;
-        private string animBoolName;
+        protected string animBoolName;
         protected float stateTimer;
         public EnemyState(EnemyStateMachine _stateMachine,Enemy enemyBase,string _animBoolName)
         {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace Enemy.Enemy_Skeleton
 {
@@ -31,9 +32,11 @@ namespace Enemy.Enemy_Skeleton
             {
                 if (_enemy.IsDetectedPlayer().distance <= _enemy.attackDistance)
                 {
-                    if(CanAttack())
-                        stateMachine.ChangeState(_enemy.attackState);
+                    
+                    stateMachine.ChangeState(_enemy.attackState);
+                    
                 }
+                
             }
             else
             {
@@ -52,6 +55,7 @@ namespace Enemy.Enemy_Skeleton
           
             if (_battleTime <0f || Vector2.Distance(_enemy.transform.position,_playerTrans.position)>7)
             {
+                _enemy.ZeroVelocity();
                 stateMachine.ChangeState(_enemy.idleState);
             }
         }
@@ -61,15 +65,6 @@ namespace Enemy.Enemy_Skeleton
             base.Exit();
             
         }
-
-        private bool CanAttack()
-        {
-            if (Time.time >= _enemy.lastTimeAttacked + _enemy.attackCoolDown)
-            {
-                return true;
-            }
-
-            return false;
-        }
+        
     }
 }

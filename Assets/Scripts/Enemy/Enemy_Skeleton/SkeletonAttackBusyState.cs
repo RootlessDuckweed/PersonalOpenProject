@@ -2,10 +2,10 @@
 
 namespace Enemy.Enemy_Skeleton
 {
-    public class SkeletonAttackState : EnemyState
+    public class SkeletonAttackBusyState : EnemyState
     {
         private SkeletonEnemy _enemy;
-        public SkeletonAttackState(EnemyStateMachine _stateMachine, Enemy enemyBase, string _animBoolName) : base(_stateMachine, enemyBase, _animBoolName)
+        public SkeletonAttackBusyState(EnemyStateMachine _stateMachine, Enemy enemyBase, string _animBoolName) : base(_stateMachine, enemyBase, _animBoolName)
         {
             if (base.enemyBase is SkeletonEnemy)
             {
@@ -22,17 +22,26 @@ namespace Enemy.Enemy_Skeleton
         {
             base.Update();
             _enemy.ZeroVelocity();
-
-            if (triggerCalled)
+            if (CanAttack())
             {
-                stateMachine.ChangeState(_enemy.atkBusyState);
+                stateMachine.ChangeState(_enemy.battleState);
             }
+            
         }
 
         public override void Exit()
         {
             base.Exit();
-            _enemy.lastTimeAttacked = Time.time;
+        }
+        
+        private bool CanAttack()
+        {
+            if (Time.time >= _enemy.lastTimeAttacked + _enemy.attackCoolDown)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

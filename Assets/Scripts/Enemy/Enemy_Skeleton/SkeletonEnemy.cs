@@ -11,6 +11,7 @@ namespace Enemy.Enemy_Skeleton
         public SkeletonMoveState moveState { get; private set; }
         public SkeletonBattleState battleState { get; private set; }
         public SkeletonAttackState attackState { get; private set; }
+        public SkeletonAttackBusyState atkBusyState { get; private set; }
         #endregion
        
         
@@ -21,6 +22,7 @@ namespace Enemy.Enemy_Skeleton
             moveState = new SkeletonMoveState(this.stateMachine, this, "Move");
             battleState = new SkeletonBattleState(this.stateMachine, this, "Move");
             attackState = new SkeletonAttackState(this.stateMachine, this, "Attack");
+            atkBusyState = new SkeletonAttackBusyState(this.stateMachine, this, "Idle");
         }
         
         
