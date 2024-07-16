@@ -16,5 +16,14 @@ namespace Enemy.Enemy_Skeleton
         {
             _enemy.AnimationFinishTrigger();
         }
+
+        public void OpenCounterAttackWindow()
+        {
+            _enemy.OpenCounterAttackWindow();
+        }
+        public void CloseCounterAttackWindow()
+        {
+            _enemy.CloseCounterAttackWindow();
+        }
     }
 }

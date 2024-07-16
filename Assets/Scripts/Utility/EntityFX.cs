@@ -20,9 +20,30 @@ namespace Utility
 
        private IEnumerator  FlashHitFX()
        {
+           print("FlashHitFX");
            _sr.material = _hitMat;
            yield return new WaitForSeconds(_flashHitFX);
            _sr.material = _originalMat;
+       }
+
+       private void RedColorBlink()
+       {
+           if (_sr.color != Color.white)
+           {
+               _sr.color = Color.white;
+           }
+           else
+           {
+               _sr.color = Color.red;
+           }
+           print("RedColorBlink");
+       }
+
+       private void CancelRedColorBlink()
+       {
+           CancelInvoke("RedColorBlink");
+           _sr.color = Color.white;
+           print("CancelRedColorBlink");
        }
     }
 }

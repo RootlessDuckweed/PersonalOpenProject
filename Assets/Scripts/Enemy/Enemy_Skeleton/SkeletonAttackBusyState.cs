@@ -16,12 +16,13 @@ namespace Enemy.Enemy_Skeleton
         public override void Enter()
         {
             base.Enter();
+            _enemy.ZeroVelocity();
         }
 
         public override void Update()
         {
             base.Update();
-            _enemy.ZeroVelocity();
+            
             if (CanAttack())
             {
                 stateMachine.ChangeState(_enemy.battleState);

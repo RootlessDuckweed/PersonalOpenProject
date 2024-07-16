@@ -12,7 +12,7 @@ namespace Background
         private float xPosition; //当前背景的滚动的初始x位置
         private float length; //当前背景渲染图层的长度大小
 
-       void Start()
+       private void Start()
        {
             cam = GameObject.Find("Main Camera");
             length = GetComponent<SpriteRenderer>().bounds.size.x;

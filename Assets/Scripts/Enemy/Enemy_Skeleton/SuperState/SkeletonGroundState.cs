@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Player;
+using UnityEngine;
 
 namespace Enemy.Enemy_Skeleton.SuperState
 {
@@ -12,13 +13,13 @@ namespace Enemy.Enemy_Skeleton.SuperState
             {
                 _enemy = base.enemyBase as SkeletonEnemy;
             }
-
-            _playerTrans = GameObject.Find("Player").transform;
+            _playerTrans =PlayerManager.Instance.Player.transform;
         }
 
         public override void Enter()
         {
             base.Enter();
+           
         }
 
         public override void Update()

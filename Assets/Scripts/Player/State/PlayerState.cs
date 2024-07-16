@@ -28,6 +28,7 @@ namespace Player.State
             player.anim.SetBool(animBoolName,true);
             stateTimer = 0;
             triggerCalled = false;
+           
         }
 
         public virtual void Update()

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Player;
+using TMPro;
 using UnityEngine;
 
 namespace Enemy.Enemy_Skeleton
@@ -15,7 +16,7 @@ namespace Enemy.Enemy_Skeleton
                 _enemy = base.enemyBase as SkeletonEnemy;
             }
 
-            _playerTrans = GameObject.Find("Player").transform;
+            _playerTrans = PlayerManager.Instance.Player.transform;
         }
 
         public override void Enter()
@@ -40,11 +41,11 @@ namespace Enemy.Enemy_Skeleton
             }
             else
             {
-                  if (_playerTrans.position.x - _enemy.transform.position.x > 0 &&_enemy.facingDir!=1)
+                  if (_playerTrans.position.x - _enemy.transform.position.x > 1 &&_enemy.facingDir!=1)
                   {
                       _enemy.Flip();
                   }
-                  else if(_playerTrans.position.x - _enemy.transform.position.x < 0 &&_enemy.facingDir!=-1)
+                  else if(_playerTrans.position.x - _enemy.transform.position.x < -1 &&_enemy.facingDir!=-1)
                   {
                       _enemy.Flip();
                   }

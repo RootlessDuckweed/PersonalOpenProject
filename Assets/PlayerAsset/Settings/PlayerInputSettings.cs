@@ -62,6 +62,33 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CounterAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""76f6b322-e85e-4cb9-bd50-4d23ca4b3929"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimSword"",
+                    ""type"": ""Button"",
+                    ""id"": ""28e58675-636b-48ce-81fb-6acec0b572db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BlackHoleSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""72b04acb-cbab-4faa-a58e-e280093fadd3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -227,6 +254,39 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08b9adc3-2ef1-42a6-b592-4857f249150c"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CounterAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b1d0e1f-5645-4d30-b6a8-827bc73c0a05"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""AimSword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f30ee3f9-2f13-4d89-a93d-42f8c5a25b10"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""BlackHoleSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -818,6 +878,9 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
+        m_GamePlay_CounterAttack = m_GamePlay.FindAction("CounterAttack", throwIfNotFound: true);
+        m_GamePlay_AimSword = m_GamePlay.FindAction("AimSword", throwIfNotFound: true);
+        m_GamePlay_BlackHoleSkill = m_GamePlay.FindAction("BlackHoleSkill", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -895,6 +958,9 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Dash;
     private readonly InputAction m_GamePlay_Attack;
+    private readonly InputAction m_GamePlay_CounterAttack;
+    private readonly InputAction m_GamePlay_AimSword;
+    private readonly InputAction m_GamePlay_BlackHoleSkill;
     public struct GamePlayActions
     {
         private @PlayerInputSettings m_Wrapper;
@@ -903,6 +969,9 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
+        public InputAction @CounterAttack => m_Wrapper.m_GamePlay_CounterAttack;
+        public InputAction @AimSword => m_Wrapper.m_GamePlay_AimSword;
+        public InputAction @BlackHoleSkill => m_Wrapper.m_GamePlay_BlackHoleSkill;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -924,6 +993,15 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @CounterAttack.started += instance.OnCounterAttack;
+            @CounterAttack.performed += instance.OnCounterAttack;
+            @CounterAttack.canceled += instance.OnCounterAttack;
+            @AimSword.started += instance.OnAimSword;
+            @AimSword.performed += instance.OnAimSword;
+            @AimSword.canceled += instance.OnAimSword;
+            @BlackHoleSkill.started += instance.OnBlackHoleSkill;
+            @BlackHoleSkill.performed += instance.OnBlackHoleSkill;
+            @BlackHoleSkill.canceled += instance.OnBlackHoleSkill;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -940,6 +1018,15 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @CounterAttack.started -= instance.OnCounterAttack;
+            @CounterAttack.performed -= instance.OnCounterAttack;
+            @CounterAttack.canceled -= instance.OnCounterAttack;
+            @AimSword.started -= instance.OnAimSword;
+            @AimSword.performed -= instance.OnAimSword;
+            @AimSword.canceled -= instance.OnAimSword;
+            @BlackHoleSkill.started -= instance.OnBlackHoleSkill;
+            @BlackHoleSkill.performed -= instance.OnBlackHoleSkill;
+            @BlackHoleSkill.canceled -= instance.OnBlackHoleSkill;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -1126,6 +1213,9 @@ public partial class @PlayerInputSettings: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnCounterAttack(InputAction.CallbackContext context);
+        void OnAimSword(InputAction.CallbackContext context);
+        void OnBlackHoleSkill(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

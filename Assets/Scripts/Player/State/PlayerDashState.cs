@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Printing;
+using Player.Skill;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,7 +22,7 @@ namespace Player.State
         {
             base.Enter(); 
             player. playerInput.GamePlay.Dash.canceled += DashCancel;
-            
+            SkillManager.Instance.cloneSkill.CreateCloneOnDashStart();
         }
 
         public override void Update()
@@ -53,6 +54,7 @@ namespace Player.State
             player.dashContinueTimeCounter = player.dashContinueTime;
             player. dashCold = true; 
             player.isDashing = false;
+            SkillManager.Instance.cloneSkill.CreateCloneOnDashOver();
         }
         private void DashCancel(InputAction.CallbackContext obj)
         {
@@ -70,7 +72,6 @@ namespace Player.State
         {
             if (!player.dashCold)
             {
-                Debug.Log("is not dashcold");
                 if (Keyboard.current.leftShiftKey.isPressed)
                 {
                     player.dashContinueTimeCounter -= Time.deltaTime;

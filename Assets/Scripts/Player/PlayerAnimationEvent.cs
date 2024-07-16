@@ -1,4 +1,5 @@
 
+using Player.Skill;
 using UnityEngine;
 
 namespace Player
@@ -15,6 +16,11 @@ namespace Player
         public void AnimationFinishTrigger()
         {
             _player.AnimationFinishTrigger();
+        }
+
+        public void ThrowSword()
+        {
+            SkillManager.Instance.swordSkill.CanUseSkill();
         }
     }
 }
