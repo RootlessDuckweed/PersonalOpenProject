@@ -6,15 +6,11 @@ namespace Utility
     public class Attack_Base : MonoBehaviour
     {
         public float damage;
-        public bool canAttackPlayer = true;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        protected virtual void  OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.layer==6 && !canAttackPlayer)
-            {
-                return;
-            }
-
+            
+            // take damage
             Enemy.Enemy enemy= other.GetComponent<Enemy.Enemy>();
             if (enemy != null)
             {

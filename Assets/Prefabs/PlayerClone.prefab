@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2452656155633530184}
   - component: {fileID: 1855817158355076140}
-  - component: {fileID: 1557472773240011442}
+  - component: {fileID: 3524397572152272465}
   m_Layer: 0
   m_Name: Attack2
   m_TagString: Untagged
@@ -88,7 +88,7 @@ PolygonCollider2D:
       - {x: 1.2585244, y: -0.26506567}
       - {x: 1.2410159, y: 0.5610742}
   m_UseDelaunayMesh: 0
---- !u!114 &1557472773240011442
+--- !u!114 &3524397572152272465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,11 +97,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 796662254803988292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f8561bb024493f97680cac593e68a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e75f0842eb24062aa788bf256b96782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  canAttackPlayer: 1
+  canGenerateCloneByAttack: 1
 --- !u!1 &2745937956178951706
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8266539088299459791}
   - component: {fileID: 1835470672268558955}
-  - component: {fileID: 4545313212177385369}
+  - component: {fileID: 6071088449912413273}
   m_Layer: 0
   m_Name: Attack3
   m_TagString: Untagged
@@ -350,7 +350,7 @@ PolygonCollider2D:
       - {x: 2.142208, y: -0.17021132}
       - {x: 1.8349013, y: 0.26789278}
   m_UseDelaunayMesh: 0
---- !u!114 &4545313212177385369
+--- !u!114 &6071088449912413273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,11 +359,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6088684383656710583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f8561bb024493f97680cac593e68a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e75f0842eb24062aa788bf256b96782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  canAttackPlayer: 1
+  canGenerateCloneByAttack: 1
 --- !u!1 &8615530074958732338
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4202345255684639571}
   - component: {fileID: 5752566846000578901}
-  - component: {fileID: 6754839722762563847}
+  - component: {fileID: 2107649225994661034}
   m_Layer: 0
   m_Name: Attack1
   m_TagString: Untagged
@@ -455,7 +455,7 @@ PolygonCollider2D:
       - {x: 1.7069674, y: -0.21681285}
       - {x: 1.4342813, y: 0.5233311}
   m_UseDelaunayMesh: 0
---- !u!114 &6754839722762563847
+--- !u!114 &2107649225994661034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -464,8 +464,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8615530074958732338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f8561bb024493f97680cac593e68a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e75f0842eb24062aa788bf256b96782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  canAttackPlayer: 1
+  canGenerateCloneByAttack: 1

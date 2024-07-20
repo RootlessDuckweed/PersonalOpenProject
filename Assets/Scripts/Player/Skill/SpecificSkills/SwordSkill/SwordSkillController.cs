@@ -155,6 +155,7 @@ namespace Player.Skill.SpecificSkills
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if(other.tag.Equals("Water")) return;
             if(isReturning)
                 return;
             Enemy.Enemy enemy = other.GetComponent<Enemy.Enemy>();

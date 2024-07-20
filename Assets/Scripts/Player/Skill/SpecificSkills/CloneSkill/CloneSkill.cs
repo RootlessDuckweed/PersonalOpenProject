@@ -15,6 +15,7 @@ namespace Player.Skill.SpecificSkills
         [SerializeField] private bool createCloneOnDashStart;
         [SerializeField] private bool createCloneOnDashOver;
         [SerializeField] private bool createCloneOnCounterAttack;
+        [SerializeField] public bool canGenerateCloneByAttack;
         private WaitForSeconds seconds = new WaitForSeconds(0.4f);
         private void Awake()
         {
