@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37014c5bdd2c4fd689bb799f720d52fc, type: 3}
+  m_Name: HealthWater
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: HealthWater
+  icon: {fileID: 938343867, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  dropChance: 5
+  equipmentType: 3
+  itemEffects:
+  - {fileID: 11400000, guid: 28774014e2533d54e9cfdc6a4d26cc8b, type: 2}
+  itemCooldown: 3
+  strength: 0
+  agility: 0
+  intelligence: 0
+  vitality: 0
+  damage: 0
+  critChance: 0
+  critPower: 0
+  health: 0
+  armor: 0
+  evasion: 0
+  magicResistance: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightning: 0
+  craftingMaterials: []

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.BlackHoleSkill
 {
     public class BlackHoleHotKeyController : MonoBehaviour
     {

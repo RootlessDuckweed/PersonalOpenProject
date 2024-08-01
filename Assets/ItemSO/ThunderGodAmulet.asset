@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37014c5bdd2c4fd689bb799f720d52fc, type: 3}
+  m_Name: ThunderGodAmulet
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: ThunderGodAmulet
+  icon: {fileID: 1501868837, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  dropChance: 8
+  equipmentType: 2
+  itemEffects:
+  - {fileID: 11400000, guid: 2456542d33506974b996cf3d9365303a, type: 2}
+  itemCooldown: 0
+  strength: 0
+  agility: 0
+  intelligence: 20
+  vitality: 20
+  damage: 0
+  critChance: 10
+  critPower: 10
+  health: 50
+  armor: 10
+  evasion: 0
+  magicResistance: 0
+  fireDamage: 5
+  iceDamage: 5
+  lightning: 10
+  craftingMaterials: []

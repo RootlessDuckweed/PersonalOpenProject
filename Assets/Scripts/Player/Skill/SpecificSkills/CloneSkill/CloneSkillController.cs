@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Utility;
 using Random = UnityEngine.Random;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.CloneSkill
 {
     public class CloneSkillController : MonoBehaviour
     {

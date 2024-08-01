@@ -1,27 +1,23 @@
-﻿using System;
-using Player.Skill.SpecificSkills.CrystalSkill;
-using UnityEngine;
+﻿using Player.Skill.SpecificSkills.CrystalSkill;
 using Player.Skill.SpecificSkills;
+using Player.Skill.SpecificSkills.BlackHoleSkill;
+using Player.Skill.SpecificSkills.CloneSkill;
+using Player.Skill.SpecificSkills.SwordSkill;
+using Utility;
+
 namespace Player.Skill
 {
-    public class SkillManager : MonoBehaviour
+    public class SkillManager : Singleton<SkillManager>
     {
-        public static SkillManager Instance { get; private set; }
         public DashSkill dashSkill { get; private set; }
         public CloneSkill cloneSkill { get; private set; }
         public SwordSkill swordSkill { get; private set; }
         public BlackHoleSkill blackHoleSkill { get; private set; }
         public CrystalSkill crystalSkill { get; private set; }
-        private void Awake()
+
+        protected override void Awake()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            base.Awake();
         }
 
         private void Start()

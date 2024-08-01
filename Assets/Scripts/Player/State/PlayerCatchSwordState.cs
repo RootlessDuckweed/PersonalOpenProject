@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using Player.Universal;
+using UnityEngine;
 
 namespace Player.State
 {

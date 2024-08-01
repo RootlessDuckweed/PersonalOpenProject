@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEditor.Build;
+﻿using System.Collections.Generic;
+using Player.Universal;
 using UnityEngine;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.SwordSkill
 {
     public class SwordSkillController : MonoBehaviour
     {
@@ -148,8 +147,7 @@ namespace Player.Skill.SpecificSkills
                     }
                 }
             }
-
-            print("amount:"+amountOfBounce);
+            
         }
 
 
@@ -159,7 +157,7 @@ namespace Player.Skill.SpecificSkills
             if(isReturning)
                 return;
             Enemy.Enemy enemy = other.GetComponent<Enemy.Enemy>();
-            if (enemy != null)
+            if (enemy != null && !enemy.stats.IsEvasion())
             {
                 enemy.StartCoroutine("FreezeTimeFor", freezeTimeDuration);
             }
@@ -198,13 +196,10 @@ namespace Player.Skill.SpecificSkills
             {
                 if (isBouncing && enemyTarget.Count <= 0)
                 {
-                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10);
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10,LayerMask.GetMask("Enemy"));
                     foreach (var hit in colliders)
                     {
-                        if (hit.GetComponent<Enemy.Enemy>() != null)
-                        {
-                            enemyTarget.Add(hit.transform);
-                        }
+                        enemyTarget.Add(hit.transform);
                     }
                     enemyTarget.Sort((x, y) => 
                         (x.position - player.transform.position).magnitude.CompareTo(
@@ -220,6 +215,8 @@ namespace Player.Skill.SpecificSkills
 
         private void StuckInto(Collider2D other)
         {
+            var enemy = other.GetComponent<Enemy.Enemy>();
+            if(enemy!=null && enemy.stats.IsEvasion()) return;
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             amountOfBounce = 0;

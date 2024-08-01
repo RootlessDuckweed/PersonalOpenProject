@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Enemy
   - UneffectedLight
-  - 
+  - Item
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2147455119
+    locked: 0
+  - name: Tree
+    uniqueID: 3501501587
     locked: 0
   - name: Ground
     uniqueID: 2120415693

@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-public enum SwordType
+namespace Player.Skill.SpecificSkills.SwordSkill
 {
-    Regular,
-    Bounce,
-    Pierce,
-    Spin
-}
+    public enum SwordType
+    {
+        Regular,
+        Bounce,
+        Pierce,
+        Spin
+    }
 
-namespace Player.Skill.SpecificSkills
-{
     public class SwordSkill : Skill
     {
         public SwordType swordType = SwordType.Regular;
@@ -109,7 +108,7 @@ namespace Player.Skill.SpecificSkills
             }
             else if(swordType == SwordType.Pierce)
             {
-                 newSwordScript.SetupPierce(pierceAmount);
+                newSwordScript.SetupPierce(pierceAmount);
             }
             else if(swordType == SwordType.Spin)
             {

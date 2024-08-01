@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Player.Universal;
 using UnityEngine;
 
 namespace Player.Skill

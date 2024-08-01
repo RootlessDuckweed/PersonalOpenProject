@@ -1,5 +1,5 @@
 ﻿using Player;
-using TMPro;
+using Player.Universal;
 using UnityEngine;
 
 namespace Enemy.Enemy_Skeleton

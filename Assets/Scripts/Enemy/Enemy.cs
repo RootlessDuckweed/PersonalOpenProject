@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utility;
@@ -26,7 +25,9 @@ namespace Enemy
         protected bool canBeStunned;
         [SerializeField] protected GameObject counterImage;
         [SerializeField]private float defaultMoveSpeed;
-        public bool isFrozenTime;
+        [FormerlySerializedAs("isFrozenTime")] public bool FrozenTimeBeAttacked;
+        public string lastAnimName { get;private set; }
+
         protected  override void Awake()
         {
             base.Awake();
@@ -57,13 +58,13 @@ namespace Enemy
         {
             if (timeFrozen)
             {
-                isFrozenTime = true;
+                FrozenTimeBeAttacked = true;
                 moveSpeed = 0;
                 anim.speed = 0;
             }
             else
             {
-                isFrozenTime = false;
+                FrozenTimeBeAttacked = false;
                 moveSpeed = defaultMoveSpeed;
                 anim.speed = 1;
             }
@@ -103,6 +104,11 @@ namespace Enemy
             Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x+attackDistance*facingDir,wallCheck.position.y));
             Gizmos.color = Color.white;
             base.OnDrawGizmosSelected();
+        }
+
+        public virtual void AssignLastAnimName(string animName)
+        {
+            lastAnimName = animName;
         }
     }
 }

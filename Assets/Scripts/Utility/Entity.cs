@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using Character;
 using UnityEngine;
+using UnityEngine.Events;
+using Utility.EnumType;
 
 namespace Utility
 {
@@ -11,6 +12,8 @@ namespace Utility
         public Rigidbody2D rb { get; private set; }
         public EntityFX fx { get; private set; }
         public SpriteRenderer sr { get; private set; }
+        public CharacterStats stats{ get; private set; }
+        public CapsuleCollider2D cd { get; private set; }
         [Header("Check whether on the Ground")]
         [SerializeField] protected LayerMask whatIsGround;
         [SerializeField] protected float checkGroundRadius;
@@ -32,12 +35,16 @@ namespace Utility
         [SerializeField] protected Vector2 knockbackForce;
         [SerializeField] protected bool isKnockback;
         [SerializeField] protected float knockbackDura;
+
+        public UnityEvent onFlipped;
         protected virtual void Awake()
         {
+            stats = GetComponent<CharacterStats>();
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponentInChildren<Animator>();
             fx = GetComponent<EntityFX>();
             sr = GetComponentInChildren<SpriteRenderer>();
+            cd = GetComponent<CapsuleCollider2D>();
             if (wallCheck == null )
             {
                 wallCheck = transform;
@@ -58,6 +65,7 @@ namespace Utility
             }
         }
         
+
         protected virtual void Update()
         {
             //CheckPhysics();
@@ -72,6 +80,7 @@ namespace Utility
                 facingDir = -1;
             
             transform.Rotate(0,180,0);
+            onFlipped?.Invoke();
         }
         
        
@@ -117,18 +126,24 @@ namespace Utility
             }
         }
 
-        public virtual void TakeDamage(GameObject enemy,float damage,bool isFrozenTime)
+        public virtual void TakeDamage(GameObject enemy,float enemyWeaponDamage,bool isFrozenTime,CharacterStats enemyStats,DamageType damageType,AilmentType type)
         {
-            print("take damage : "+ damage+" from "+enemy.name);
+            if(enemyStats.IsEvasion()) return;
+            TakeDamageEffect(enemy, isFrozenTime);
+            var isCrit = false; 
+            stats.MinusHealth(enemyWeaponDamage,enemyStats,out isCrit,damageType,type); // 敌人的武器伤害 加上敌人属性加成的伤害传入计算
+        }
+
+        protected virtual void TakeDamageEffect(GameObject enemy, bool isFrozenTime)
+        {
             if (!isFrozenTime)
             {
                 StartCoroutine(Knockback(enemy));
             }
             fx.StartCoroutine("FlashHitFX");
-            
         }
 
-       private IEnumerator Knockback(GameObject enemy)
+        private IEnumerator Knockback(GameObject enemy)
         {
             isKnockback = true;
             int dir = 0;
@@ -145,7 +160,7 @@ namespace Utility
             isKnockback = false;
         }
 
-        public void MakeTransparent(bool isTransparent)
+        public virtual void MakeTransparent(bool isTransparent)
         {
             if (isTransparent)
             {
@@ -155,6 +170,11 @@ namespace Utility
             {
                 sr.color = Color.white;
             }
+        }
+
+        public virtual void Die()
+        {
+            // subclass do something
         }
     }
 }

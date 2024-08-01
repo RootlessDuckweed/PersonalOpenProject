@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.CrystalSkill
 {
     public class CrystalSkillController : MonoBehaviour
     {
@@ -17,6 +16,8 @@ namespace Player.Skill.SpecificSkills
 
         public void SetupCrystal(float crystalExistDuration,bool canExplode,bool canMove,float moveSpeed,Transform closestEnemy,bool canGrow=true,float growSpeed=5)
         {
+            if (closestEnemy == null)
+                closestEnemy = transform;
             _crystalExistTimer = crystalExistDuration;
             _canExplode = canExplode;
             _canMove = canMove;

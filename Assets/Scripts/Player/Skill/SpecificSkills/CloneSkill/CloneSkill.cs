@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Player.Universal;
 using UnityEngine;
 using UnityEngine.Pool;
 using Utility;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.CloneSkill
 {
     public class CloneSkill : Skill
     {

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Player.Universal;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utility;
 using Random = UnityEngine.Random;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.BlackHoleSkill
 {
     public class BlackHoleSkillController : MonoBehaviour
     {

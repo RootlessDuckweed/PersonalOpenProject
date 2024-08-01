@@ -1,6 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Background
 {
@@ -16,7 +14,6 @@ namespace Background
        {
             cam = GameObject.Find("Main Camera");
             length = GetComponent<SpriteRenderer>().bounds.size.x;
-            print(length);
             xPosition = transform.position.x;
        }
 

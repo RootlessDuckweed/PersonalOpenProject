@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Player.Skill.SpecificSkills
+namespace Player.Skill.SpecificSkills.BlackHoleSkill
 {
     public class BlackHoleSkill : Skill
     {

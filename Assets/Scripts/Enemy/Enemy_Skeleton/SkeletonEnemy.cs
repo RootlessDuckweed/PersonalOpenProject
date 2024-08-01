@@ -1,8 +1,4 @@
-﻿using System;
-using NUnit.Framework.Internal;
-using UnityEngine;
-
-namespace Enemy.Enemy_Skeleton
+﻿namespace Enemy.Enemy_Skeleton
 {
     public class SkeletonEnemy: Enemy
     {
@@ -14,6 +10,7 @@ namespace Enemy.Enemy_Skeleton
         public SkeletonAttackState attackState { get; private set; }
         public SkeletonAttackBusyState atkBusyState { get; private set; }
         public SkeletonStunnedState stunnedState { get; private set; }
+        public SkeletonDeadState deadState{get; private set;}
         #endregion
        
         
@@ -30,6 +27,7 @@ namespace Enemy.Enemy_Skeleton
             attackState = new SkeletonAttackState(this.stateMachine, this, "Attack");
             atkBusyState = new SkeletonAttackBusyState(this.stateMachine, this, "Idle");
             stunnedState = new SkeletonStunnedState(this.stateMachine, this, "Stunned");
+            deadState =  new SkeletonDeadState(this.stateMachine, this, "Die");
             stateMachine.Initialize(idleState);
         }
 
@@ -54,8 +52,14 @@ namespace Enemy.Enemy_Skeleton
 
         public override void SetVelocity(float _velocityX, float _velocityY)
         {
-            if(isFrozenTime) return;
+            if(FrozenTimeBeAttacked) return;
             base.SetVelocity(_velocityX, _velocityY);
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            stateMachine.ChangeState(deadState);
         }
     }
 }

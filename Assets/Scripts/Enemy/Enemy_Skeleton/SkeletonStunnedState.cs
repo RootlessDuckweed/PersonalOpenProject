@@ -30,7 +30,7 @@
 
         public override void Exit()
         { 
-            _enemy.fx.Invoke("CancelRedColorBlink",0);
+            _enemy.fx.Invoke("CancelColorBlink",0);
             base.Exit();
            
         }

@@ -100,7 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e75f0842eb24062aa788bf256b96782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  AdditionalAilment: 1
+  originalWeaponDamage: 5
+  damageType: 1
   canGenerateCloneByAttack: 1
 --- !u!1 &2745937956178951706
 GameObject:
@@ -362,7 +364,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e75f0842eb24062aa788bf256b96782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  AdditionalAilment: 1
+  originalWeaponDamage: 5
+  damageType: 1
   canGenerateCloneByAttack: 1
 --- !u!1 &8615530074958732338
 GameObject:
@@ -467,5 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e75f0842eb24062aa788bf256b96782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  AdditionalAilment: 1
+  originalWeaponDamage: 5
+  damageType: 1
   canGenerateCloneByAttack: 1

@@ -1,4 +1,5 @@
 ﻿using Player.Skill;
+using Player.Universal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,6 @@ namespace Player.State
         private void ReleaseAimSword(InputAction.CallbackContext obj)
         {
             stateMachine.ChangeState(player.idleState);
-            Debug.Log("release");
         }
 
         public override void Update()

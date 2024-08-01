@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Utility
@@ -12,6 +11,10 @@ namespace Utility
         [SerializeField] private Material _originalMat;
         [SerializeField] private float _flashHitFX;
 
+        [Header("Ailments Colors")] 
+        [SerializeField] private Color[] igniteColor;
+        [SerializeField] private Color[] chillColor;
+        [SerializeField] private Color[] shockColor;
         private void Start()
         {
             _sr = GetComponentInChildren<SpriteRenderer>();
@@ -36,14 +39,49 @@ namespace Utility
            {
                _sr.color = Color.red;
            }
-           print("RedColorBlink");
+          
        }
 
-       private void CancelRedColorBlink()
+       private void CancelColorBlink()
        {
-           CancelInvoke("RedColorBlink");
+           CancelInvoke();
            _sr.color = Color.white;
-           print("CancelRedColorBlink");
+          
        }
+
+       
+       public void IgniteFXFor(float seconds)
+       {
+           InvokeRepeating("IgniteColorFx",0,.3f);
+           Invoke("CancelColorBlink",seconds);
+       }
+
+       public void ChillFXFor(float seconds)
+       {
+           InvokeRepeating("ChillColorFx",0,.3f);
+           Invoke("CancelColorBlink",seconds);
+       }
+       public void ShockFXFor(float seconds)
+       {
+           InvokeRepeating("ShockColorFx",0,.3f);
+           Invoke("CancelColorBlink",seconds);
+       }
+
+       private void ChillColorFx()
+       {
+           _sr.color = _sr.color != chillColor[0] ? chillColor[0] : chillColor[1];
+       }
+
+       
+       private void ShockColorFx()
+       {
+           _sr.color = _sr.color != shockColor[0] ? shockColor[0] : shockColor[1];
+       }
+       
+       private void IgniteColorFx()
+       {
+           _sr.color = _sr.color != igniteColor[0] ? igniteColor[0] : igniteColor[1];
+       }
+       
     }
 }

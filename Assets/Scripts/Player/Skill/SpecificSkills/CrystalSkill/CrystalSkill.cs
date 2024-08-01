@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 
 namespace Player.Skill.SpecificSkills.CrystalSkill

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing.Printing;
-using Player.Skill;
+﻿using Player.Skill;
 using Player.Skill.SpecificSkills;
+using Player.Skill.SpecificSkills.SwordSkill;
+using Player.Universal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,7 +38,6 @@ namespace Player.State.SuperState
             if (HasNoThrewSword())
             {
                 stateMachine.ChangeState(player.aimSwordState);
-                Debug.Log("change to aimSword");
             }
                 
         }

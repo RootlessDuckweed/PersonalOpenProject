@@ -37,15 +37,6 @@ namespace Water
         {
             Spline waterSpline = ssc.spline;
             int waterPointCount = waterSpline.GetPointCount();
-            
-            /*for (int i = 0; i < waterSpline.GetPointCount(); i++)
-            {
-                Vector3 point = waterSpline.GetPosition(i);
-                Debug.Log($"顶点 {i}: {point}");
-                //Test every Point's sorting 
-            
-            }*/
-            
             // delete point except corner
             for (int i = CornersCount; i < waterPointCount-CornersCount; i++)
             {
@@ -58,7 +49,6 @@ namespace Water
             Vector3 waterTopRightCorner = waterSpline.GetPosition(2); // get top-right corner
             float waterWidth = waterTopRightCorner.x - waterTopLeftCorner.x; //get water width
             float spacingPerWave = waterWidth / (wavesCount + 1); // get space between per wave (need to plus 1)
-
             for (int i = wavesCount; i >0; i--)
             {
                 int index = CornersCount; // start from index to insert points
