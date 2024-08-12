@@ -21,7 +21,8 @@ namespace Utility
         
         [Header("Flip(need to set by manual)")]
         public bool isFacingRight; // need to set in inspector
-        public int facingDir { get; private set; }
+
+        public int facingDir;
 
         [Header("Check Wall")] 
         [SerializeField] protected float checkWallRadius;
@@ -35,7 +36,7 @@ namespace Utility
         [SerializeField] protected Vector2 knockbackForce;
         [SerializeField] protected bool isKnockback;
         [SerializeField] protected float knockbackDura;
-
+        [SerializeField] protected bool canBeKnocked=true;
         public UnityEvent onFlipped;
         protected virtual void Awake()
         {
@@ -125,25 +126,42 @@ namespace Utility
                 
             }
         }
+        /// <summary>
+        /// 受伤者 受伤
+        /// </summary>
+        /// <param name="enemy">攻击源</param>
+        /// <param name="enemyWeaponDamage">攻击源的武器伤害</param>
+        /// <param name="isFrozenTime">当前的受伤者是否处于</param>
+        /// <param name="enemyStats">打出伤害的对象的属性</param>
+        /// <param name="damageType">伤害类型</param>
+        /// <param name="type">异常类型</param>
 
-        public virtual void TakeDamage(GameObject enemy,float enemyWeaponDamage,bool isFrozenTime,CharacterStats enemyStats,DamageType damageType,AilmentType type)
+        public virtual void TakeDamage(GameObject enemy,float enemyWeaponDamage,bool isFrozenTime,CharacterStats enemyStats,DamageType damageType,AilmentType type, out bool isCriti)
         {
-            if(enemyStats.IsEvasion()) return;
-            TakeDamageEffect(enemy, isFrozenTime);
-            var isCrit = false; 
-            stats.MinusHealth(enemyWeaponDamage,enemyStats,out isCrit,damageType,type); // 敌人的武器伤害 加上敌人属性加成的伤害传入计算
+            if (stats.IsEvasion() || !stats.canBeHurt)
+            {
+                isCriti = false;
+                return;
+            }
+            stats.MinusHealth(enemyWeaponDamage,enemyStats,out var isCritical,damageType,type); // 敌人的武器伤害 加上敌人属性加成的伤害传入计算
+            TakeDamageEffect(enemy, isFrozenTime,isCritical,enemyStats);
+            isCriti = isCritical;
         }
 
-        protected virtual void TakeDamageEffect(GameObject enemy, bool isFrozenTime)
+        protected virtual void TakeDamageEffect(GameObject enemy, bool isFrozenTime,bool isCritical,CharacterStats enemyStats)
         {
-            if (!isFrozenTime)
+            if (!isFrozenTime && canBeKnocked)
             {
-                StartCoroutine(Knockback(enemy));
+                StartCoroutine(Knockback(enemy,isCritical));
+            }
+            if (isCritical)
+            {
+                enemyStats.GetComponent<EntityFX>().GenerateCriticalHitFX(enemy,gameObject);
             }
             fx.StartCoroutine("FlashHitFX");
         }
 
-        private IEnumerator Knockback(GameObject enemy)
+        private IEnumerator Knockback(GameObject enemy,bool isCritical)
         {
             isKnockback = true;
             int dir = 0;
@@ -155,8 +173,18 @@ namespace Utility
             {
                 dir = 1;
             }
-            rb.velocity = new Vector2(dir * knockbackForce.x, knockbackForce.y);
-            yield return new WaitForSeconds(knockbackDura);
+
+            if (isCritical)
+            {
+                rb.velocity = new Vector2(dir * knockbackForce.x*1.5f, knockbackForce.y+1);
+                yield return new WaitForSeconds(knockbackDura*1.5f);
+            }
+            else
+            {
+                rb.velocity = new Vector2(dir * knockbackForce.x, knockbackForce.y);
+                yield return new WaitForSeconds(knockbackDura);
+            }
+            
             isKnockback = false;
         }
 
@@ -175,6 +203,11 @@ namespace Utility
         public virtual void Die()
         {
             // subclass do something
+        }
+
+        public virtual void OnStatsChanged()
+        {
+            
         }
     }
 }

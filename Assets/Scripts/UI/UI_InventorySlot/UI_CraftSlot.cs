@@ -4,14 +4,27 @@ namespace UI.UI_InventorySlot
 {
     public class UI_CraftSlot : UI_ItemSlot
     {
-        private void OnEnable()
+        
+        protected override void Awake()
         {
-            UpdateInventoryItem(item);
+            base.Awake();
         }
+        
 
         public override void OnPointerDown(PointerEventData eventData)
         {
-            
+            if(item!=null && item.itemData!=null)
+                ui.craftWindowUI.ShowTheCraftItem(item);
+        }
+
+        public override void OnPointerEnter(PointerEventData eventData)
+        {
+           
+        }
+
+        public override void OnPointerExit(PointerEventData eventData)
+        {
+           
         }
     }
 }

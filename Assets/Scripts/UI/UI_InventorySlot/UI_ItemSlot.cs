@@ -10,13 +10,19 @@ using Utility.EnumType;
 
 namespace UI.UI_InventorySlot
 {
-    public class UI_ItemSlot : MonoBehaviour,IPointerDownHandler
+    public class UI_ItemSlot : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler,IPointerExitHandler
     {
-        [SerializeField] private Image itemImage;
-        [SerializeField] private TextMeshProUGUI itemText;
+        [SerializeField] protected Image itemImage;
+        public TextMeshProUGUI itemText;
 
         public InventoryItem item;
-        
+        protected UI ui;
+
+        protected virtual void Awake()
+        {
+            ui = GetComponentInParent<UI>();
+        }
+
         public void UpdateInventoryItem(InventoryItem newItem)
         {
             item = newItem;
@@ -43,7 +49,13 @@ namespace UI.UI_InventorySlot
                 InventoryManager.Instance.RemoveItem(item.itemData);
                 return;
             }
-
+            
+            if(item.itemData.itemType==ItemType.Material)
+            {
+                ui.craftWindowUI.AddToSelectingSlots(item);
+                return;
+            }
+            
             var itemEquipment = item.itemData as ItemDataEquipment;
             if (itemEquipment.equipmentType == EquipmentType.Flask)
             {
@@ -51,6 +63,7 @@ namespace UI.UI_InventorySlot
             } 
             else if(item.itemData.itemType==ItemType.Equipment)
                 InventoryManager.Instance.EquipItem(item.itemData);
+           
         }
 
         public void Clear()
@@ -58,7 +71,19 @@ namespace UI.UI_InventorySlot
             itemImage.sprite = null;
             itemImage.color = Color.clear;
             itemText.text = "";
-            item = null;
+            item= null;
+        }
+
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            if(item == null || item.itemData == null) return;
+            ui.itemTooltip.ShowToolTip(item.itemData,ui.characterPanelToolTipPosition);
+        }
+
+        public virtual void OnPointerExit(PointerEventData eventData)
+        {
+            if(item == null || item.itemData == null) return;
+            ui.itemTooltip.HideToolTip();
         }
     }
 }

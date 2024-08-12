@@ -22,7 +22,7 @@ namespace Utility
             if (timer > 0.2f)
             {
                 timer = 0;
-                light2D.intensity = Random.Range(originalIntensity-10f, originalIntensity + 2f);
+                light2D.intensity = Random.Range(originalIntensity-2f, originalIntensity + 2f);
             }
             
         }

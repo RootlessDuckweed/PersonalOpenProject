@@ -21,8 +21,8 @@ namespace Inventory
         /// <summary>
         /// 特别的效果，在具体的实例中执行，比如需要精确的点位触发，无法在装备的那一刻 进行执行 需要在特定的场景去执行
         /// </summary>
-        /// <param name="player"></param>
-        /// <param name="enemy"></param>
+        /// <param name="player">特效使用者</param>
+        /// <param name="enemy">打击目标</param>
         public virtual void ExecuteSpecialEffect(GameObject player=null,GameObject enemy=null)
         {
             

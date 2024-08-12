@@ -5,8 +5,8 @@ namespace Player.Skill
 {
     public class Skill : MonoBehaviour
     {
-        [SerializeField] protected float coolDown;
-        protected float coolDownTimer;
+        public float coolDown;
+        public float coolDownTimer { get; private set; }
         public bool canUse;
         public bool coolDownCompleted;
         protected PlayerController player;
@@ -32,7 +32,8 @@ namespace Player.Skill
                 coolDownCompleted = false;
                 return true;
             }
-
+            
+            player.fx.CreatePopUpText("CoolDown!");
             return false;
         }
 

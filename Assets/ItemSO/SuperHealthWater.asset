@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SuperHealthWater
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: SuperHealthWater
+  itemName: Super Health Water
+  itemDescription: ItemDescription
   icon: {fileID: -1857543799, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   dropChance: 16
   equipmentType: 3

@@ -50,14 +50,13 @@ namespace Player.Skill.SpecificSkills.SwordSkill
         {
             Destroy(gameObject);
         }
-        public void SetupSword(Vector2 finalDir, float gravity,float freezeTimeDuration,float returnSpeed)
+        public void SetupSword(Vector2 finalDir, float gravity,float returnSpeed)
         {
             rb.gravityScale = gravity;
             rb.velocity = finalDir;
             this.returnSpeed = returnSpeed;
             if(SkillManager.Instance.swordSkill.swordType!=SwordType.Pierce)
                 anim.SetBool("Rotation",true);
-            this.freezeTimeDuration = freezeTimeDuration;
             Invoke("ReturnSword",7);
         }
 
@@ -156,11 +155,6 @@ namespace Player.Skill.SpecificSkills.SwordSkill
             if(other.tag.Equals("Water")) return;
             if(isReturning)
                 return;
-            Enemy.Enemy enemy = other.GetComponent<Enemy.Enemy>();
-            if (enemy != null && !enemy.stats.IsEvasion())
-            {
-                enemy.StartCoroutine("FreezeTimeFor", freezeTimeDuration);
-            }
             
             if (SkillManager.Instance.swordSkill.swordType == SwordType.Bounce)
             {

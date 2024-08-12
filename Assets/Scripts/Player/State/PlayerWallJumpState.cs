@@ -20,7 +20,7 @@ namespace Player.State
         public override void Update()
         {
             base.Update();
-            if (stateTimer > 0.4f)
+            if (stateTimer > 0.2f)
             {
                 stateMachine.ChangeState(player.airState);
             }

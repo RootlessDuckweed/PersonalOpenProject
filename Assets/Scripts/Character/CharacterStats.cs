@@ -50,13 +50,13 @@ namespace Character
         [SerializeField] private GameObject lightningPrefab;
         
         /*public  float invulnerableDuration=0.001f;
-        private float invulnerableTimer;
-        public bool canBeHurt;*/
+        private float invulnerableTimer;*/
+        public bool canBeHurt { get; private set; } 
 
         public UnityEvent onDead;
         public float currentHealth;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             fx = GetComponent<EntityFX>();
         }
@@ -65,6 +65,7 @@ namespace Character
         {
             critPower.SetDefaultValue(150);
             currentHealth = GetMaxHealth();
+            canBeHurt = true;
         }
 
         protected virtual void Update()
@@ -108,7 +109,6 @@ namespace Character
             }
             if (ignitedDamageTimer < 0 && isIgnited)
             {
-                bool isCrit;
                 currentHealth -= sufferIgnitedDamage;
                 ignitedDamageTimer = ignitedDamageCooldown;
             }
@@ -140,13 +140,13 @@ namespace Character
         /// <param name="damageType">敌人的攻击类型</param>
         public virtual void MinusHealth(float originalDamage,CharacterStats enemyStat,out bool isCrit,DamageType damageType,AilmentType ailType)
         {
-            SufferAilmentType(ailType,enemyStat);
-            
-            /*if (!canBeHurt)
+            if (!canBeHurt)
             {
                 isCrit = false;
                 return;
-            }*/
+            }
+            SufferAilmentType(ailType,enemyStat);
+            
             
             if (enemyStat == null)
             {
@@ -156,21 +156,22 @@ namespace Character
             }
             var originalHealth = currentHealth;
             if(damageType == DamageType.Physical)
-                SufferPhysicalDamage(originalDamage, enemyStat, out isCrit, originalHealth);
+                SufferPhysicalDamage(originalDamage, enemyStat, out isCrit);
             else
             {
                 SufferMagicalDamage(originalDamage,enemyStat);
+                isCrit = false;
             }
 
-
+            float lostHealth = originalHealth - currentHealth;
+            fx.CreatePopUpText($"-{lostHealth}");
             if (currentHealth <= 0)
             {
                 Die();
             }
 
             /*canBeHurt = false;*/
-
-            isCrit = false;
+            
         }
 
         #region Suffer Damage And Ailment
@@ -194,11 +195,12 @@ namespace Character
             }
         } 
 
-        private void SufferPhysicalDamage(float originalDamage, CharacterStats enemyStat, out bool isCrit, float originalHealth)
+        private void SufferPhysicalDamage(float originalDamage, CharacterStats enemyStat, out bool isCrit)
         {
             if (enemyStat.canCrit())
             {
                 isCrit = true;
+                print("ciritcal");
                 currentHealth -= GetCriticalDamage(GetFinalDamage(originalDamage,enemyStat.damage),enemyStat.critPower,enemyStat.strength);
             }
             else
@@ -321,6 +323,11 @@ namespace Character
             onDead?.Invoke();
         }
 
+        public virtual void MakeInvincible(bool isInvincible)
+        {
+            canBeHurt = !isInvincible;
+        }
+
         public virtual string GetStatString(int number)
         {
             switch (number)
@@ -343,7 +350,7 @@ namespace Character
         public virtual string GetDefensiveStatString()
         {
             return
-                $"MaxHealth:{maxHealth.GetValue()} Armor:{armor.GetValue()}\nEvasion:{evasion.GetValue()}";
+                $"MaxHealth:{maxHealth.GetValue()+vitality.GetValue()} Armor:{armor.GetValue()}\nEvasion:{evasion.GetValue()}";
         }
 
         public virtual string GetOffensiveStatString()
@@ -357,5 +364,6 @@ namespace Character
             return
                 $"LightningDamage:{lightningDamage.GetValue()} IceDamage:{iceDamage.GetValue()}\nFireDamage:{fireDamage.GetValue()}";
         }
+        
     }
 }

@@ -1,6 +1,8 @@
-﻿using Unity.Mathematics;
+﻿using UI.SkillTreeUI;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UI;
 
 namespace Player.Skill.SpecificSkills.CrystalSkill
 {
@@ -10,21 +12,35 @@ namespace Player.Skill.SpecificSkills.CrystalSkill
         [SerializeField] private GameObject crystalPrefab;
         
         [Header("Move")]
-        [SerializeField] private bool canMove;
         [SerializeField] private float moveSpeed;
         
-        [Header("Explode")]
-        [SerializeField] private bool canExplode;
-
         [Header("Multi stacking crystal")] 
-        [SerializeField] private bool canUseMultiStacks;
         [SerializeField] private int amountOfStacks;
-        [SerializeField] private float multiStackCooldown;
+        public float multiStackCooldown;
+        public float multiStackTimer;
+        
+        //Skill UI manage
+        
+        [Header("Regular crystal")] 
+        [SerializeField] private UI_SkillTreeSlot crystalUnlockedButton;
+        public bool crystalUnlock { get; private set; }
+
+        [Header("Crystal explosion")]
+        [SerializeField] private UI_SkillTreeSlot crystalExplosionUnlockedButton;
+        public bool crystalExplosionUnlock { get; private set; }
+        
+        [Header("Crystal controlled destruction")]
+        [SerializeField] private UI_SkillTreeSlot crystalControlledUnlockedButton;
+        public bool crystalControlledUnlock { get; private set; }
+        
+        [Header("Crystal multi controlled")]
+        [SerializeField]  private UI_SkillTreeSlot crystalMultiControlledUnlockedButton;
+        public bool crystalMultiControlledUnlock { get; private set; }
 
         [Header("Crystal mirage")] 
-        [SerializeField] private bool cloneInsteadOfCrystal; 
-        
-        private float multiStackTimer;
+        [SerializeField] private UI_SkillTreeSlot crystalMirageUnlockButton;
+        public bool crystalMirageUnlock { get; private set; }
+
         public int currentStacks { get; private set; }
 
         private GameObject currentCrystal;
@@ -40,6 +56,12 @@ namespace Player.Skill.SpecificSkills.CrystalSkill
         {
             base.Start();
             currentStacks = amountOfStacks;
+            
+            crystalUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockCrystal);
+            crystalExplosionUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockExplosion);
+            crystalControlledUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockControlled);
+            crystalMultiControlledUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockMultiControlled);
+            crystalMirageUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockCrystalMirage);
         }
 
         protected override void Update()
@@ -54,7 +76,18 @@ namespace Player.Skill.SpecificSkills.CrystalSkill
 
         public override bool CanUseSkill()
         {
-            return base.CanUseSkill();
+            if(!crystalMultiControlledUnlock)
+                return base.CanUseSkill();
+            else
+            {
+                if (multiStackTimer<=0)
+                {
+                    UseSkill();
+                    return true;
+                }
+
+                return false;
+            }
         }
 
         public override void UseSkill()
@@ -71,18 +104,19 @@ namespace Player.Skill.SpecificSkills.CrystalSkill
 
         private bool CanUseRegularCrystal()
         {
-            if(canUseMultiStacks) return false;
+            if (!crystalUnlock) return false;
+            if(crystalMultiControlledUnlock) return false;
 
             if (currentCrystal==null)
             {
                 currentCrystal = GetCrystalFromPool(player.transform,quaternion.identity);
                 //currentCrystal = Instantiate(crystalPrefab, player.transform.position, quaternion.identity);
-                currentCrystal.GetComponent<CrystalSkillController>().SetupCrystal(crystalDuration,canExplode,canMove,moveSpeed,FindClosestEnemy(currentCrystal.transform));
+                currentCrystal.GetComponent<CrystalSkillController>().SetupCrystal(crystalDuration,crystalExplosionUnlock,crystalControlledUnlock,moveSpeed,FindClosestEnemy(currentCrystal.transform));
             }
             else
             {
 
-                if (cloneInsteadOfCrystal)
+                if (crystalMirageUnlock)
                 {
                     SkillManager.Instance.cloneSkill.UseSkillAndSetPosition(player,Vector3.zero);
                     (player.transform.position, currentCrystal.transform.position) = (currentCrystal.transform.position, player.transform.position);
@@ -101,12 +135,12 @@ namespace Player.Skill.SpecificSkills.CrystalSkill
 
         private bool CanUseMultiCrystal()
         {
-            if (canUseMultiStacks && multiStackTimer<=0)
+            if (crystalMultiControlledUnlock && multiStackTimer<=0)
             {
                 if (currentStacks>0)
                 {
                    var crystal = GetCrystalFromPool(player.transform, quaternion.identity);
-                   crystal. GetComponent<CrystalSkillController>().SetupCrystal(crystalDuration,canExplode,canMove,moveSpeed,FindClosestEnemy(currentCrystal.transform));
+                   crystal. GetComponent<CrystalSkillController>().SetupCrystal(crystalDuration,crystalExplosionUnlock,crystalControlledUnlock,moveSpeed,FindClosestEnemy(currentCrystal.transform));
                    currentStacks--;
                    if (currentStacks <= 0)
                    {
@@ -167,6 +201,56 @@ namespace Player.Skill.SpecificSkills.CrystalSkill
         public void ReleaseCrystalToPool(GameObject crystal)
         {
             crystalPool.Release(crystal);
+        }
+
+        private void UnlockCrystal()
+        {
+            if (crystalUnlockedButton.unlocked)
+                crystalUnlock = true;
+            else
+            {
+                crystalUnlock = false;
+            }
+        }
+
+        private void UnlockExplosion()
+        {
+            if (crystalExplosionUnlockedButton.unlocked)
+                crystalExplosionUnlock = true;
+            else
+            {
+                crystalExplosionUnlock = false;
+            }
+        }
+
+        private void UnlockControlled()
+        {
+            if (crystalControlledUnlockedButton.unlocked)
+                crystalControlledUnlock = true;
+            else
+            {
+                crystalControlledUnlock = false;
+            }
+        }
+
+        private void UnlockMultiControlled()
+        {
+            if (crystalMultiControlledUnlockedButton.unlocked)
+                crystalMultiControlledUnlock = true;
+            else
+            {
+                crystalMultiControlledUnlock = false;
+            }
+        }
+
+        private void UnlockCrystalMirage()
+        {
+            if (crystalMirageUnlockButton.unlocked)
+                crystalMirageUnlock = true;
+            else
+            {
+                crystalMirageUnlock = false;
+            }
         }
     }
 }

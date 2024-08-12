@@ -1,4 +1,5 @@
 ﻿using Player.Universal;
+using SceneManager;
 using UnityEngine;
 
 namespace Player.State
@@ -15,6 +16,7 @@ namespace Player.State
             player.playerInput.Disable();
             player.cd.enabled = false;
             player.rb.bodyType = RigidbodyType2D.Static;
+            Object.FindFirstObjectByType<UI.UI>().DeadTextAppear();
         }
 
         public override void Update()

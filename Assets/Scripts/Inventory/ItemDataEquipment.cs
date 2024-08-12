@@ -14,7 +14,6 @@ namespace Inventory
     {
         public EquipmentType equipmentType;
         public ItemEffect[] itemEffects;
-        public float itemCooldown;
         [Header("Major Stats")] 
         public float strength;
         public float agility;

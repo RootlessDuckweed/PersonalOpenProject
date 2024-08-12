@@ -52,7 +52,7 @@
 
         public override void SetVelocity(float _velocityX, float _velocityY)
         {
-            if(FrozenTimeBeAttacked) return;
+            if(isFrozenTime) return;
             base.SetVelocity(_velocityX, _velocityY);
         }
 

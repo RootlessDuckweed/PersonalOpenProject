@@ -7,6 +7,7 @@ namespace Player.State
 {
     public class PlayerCounterState : PlayerState
     {
+        private bool isSucceed;
         public PlayerCounterState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
         {
         }
@@ -30,6 +31,8 @@ namespace Player.State
                     {
                         stateTimer = -1; //状态停止 
                         player.anim.SetBool("SuccessfulCounterAttack",true);
+                        player.stats.MakeInvincible(true);
+                        isSucceed = true;
                         float xOffset;
                         if (Random.value > 0.5f)
                         {
@@ -39,9 +42,9 @@ namespace Player.State
                         {
                             xOffset = -1.5f;
                         }
-                        
                         SkillManager.Instance.cloneSkill.CreateCloneOnCounterAttack(enemy,new Vector3(xOffset,0));
-                          
+                        if(SkillManager.Instance.parrySkill.parryRestoreUnlocked)
+                            player.stats.currentHealth += player.stats.GetMaxHealth() * SkillManager.Instance.parrySkill.restorePercentage;
                     }
                 }
                 
@@ -51,11 +54,16 @@ namespace Player.State
             {
                 stateMachine.ChangeState(player.idleState);
             }
+            
         }
 
         public override void Exit()
         {
             base.Exit();
+            if (isSucceed)
+            {
+                player.stats.MakeInvincible(false);
+            }
         }
     }
 }

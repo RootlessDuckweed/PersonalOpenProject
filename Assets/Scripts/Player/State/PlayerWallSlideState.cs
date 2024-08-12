@@ -44,7 +44,7 @@ namespace Player.State
                 }
             }
 
-            if (player.CheckGround())
+            if (player.CheckGround()||!player.CheckWall())
             {
                 stateMachine.ChangeState(player.idleState);
             }

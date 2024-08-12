@@ -59,6 +59,7 @@ namespace Enemy.Enemy_Skeleton
                 _enemy.ZeroVelocity();
                 stateMachine.ChangeState(_enemy.idleState);
             }
+            
         }
 
         public override void Exit()

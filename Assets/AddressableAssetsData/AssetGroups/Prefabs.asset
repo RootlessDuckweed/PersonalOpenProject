@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefabs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3dc3711963147dd478fad08b5b907f4f
+  m_SerializeEntries:
+  - m_GUID: 8e07c7c1d53b68a42a813e68a79b6d93
+    m_Address: Assets/Prefabs/IceAndFire.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dac9292de15ee1445903a10d6deac7f8
+    m_Address: Assets/Prefabs/PlayerClone.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3a9c61cc108bfa4691dc729fe18942d
+    m_Address: Assets/Prefabs/BlackholeHotKey.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bfdda7e59d1f0f46a807b4e354beb95
+    m_Address: Assets/Prefabs/Blackhole.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b67d4d172f09e7449907a67b26c7a20
+    m_Address: Assets/Prefabs/Crystal.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e12af9ec97a884447b8b28664066edf4
+    m_Address: Assets/Prefabs/Thunder.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Prefabs
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 97474225eeea7594eb8cc49baad760b5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: d366488796b20874192e615a3b226d48, type: 2}
+    - {fileID: 11400000, guid: 70e4e5dcbcd1503418c9f2d171d91e54, type: 2}

@@ -22,7 +22,7 @@ namespace Enemy.Enemy_Skeleton
         public override void Update()
         {
             base.Update();
-            
+            Debug.Log(triggerCalled);
             if (triggerCalled)
             {
                 stateMachine.ChangeState(_enemy.atkBusyState);
@@ -33,6 +33,7 @@ namespace Enemy.Enemy_Skeleton
         {
             base.Exit();
             _enemy.lastTimeAttacked = Time.time;
+            Debug.Log("over");
         }
     }
 }

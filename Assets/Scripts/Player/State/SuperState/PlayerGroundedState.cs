@@ -28,6 +28,7 @@ namespace Player.State.SuperState
 
         private void UseBlackHoleSkill(InputAction.CallbackContext obj)
         {
+            if(!SkillManager.Instance.cloneSkill.blackHoleSkillUnlocked) return;
             var skill = SkillManager.Instance.blackHoleSkill;
             if(skill.canUse && skill.coolDownCompleted)
                 stateMachine.ChangeState(player.blackHoleSkillState);
@@ -35,7 +36,7 @@ namespace Player.State.SuperState
 
         private void AimSword(InputAction.CallbackContext obj)
         {
-            if (HasNoThrewSword())
+            if (HasNoThrewSword() && SkillManager.Instance.swordSkill.swordUnlocked)
             {
                 stateMachine.ChangeState(player.aimSwordState);
             }
@@ -44,7 +45,8 @@ namespace Player.State.SuperState
 
         private void CounterAttack(InputAction.CallbackContext obj)
         {
-            stateMachine.ChangeState(player.counterAttackState);
+            if(SkillManager.Instance.parrySkill.parryUnlocked && SkillManager.Instance.parrySkill.CanUseSkill())
+                stateMachine.ChangeState(player.counterAttackState);
         }
 
         private void Attack(InputAction.CallbackContext obj)

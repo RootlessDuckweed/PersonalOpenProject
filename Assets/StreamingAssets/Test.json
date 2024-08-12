@@ -1,0 +1,43 @@
+{
+  "currency": 0,
+  "inventory": {
+    "46eedac77b19de54ab3c08c92788c40f": 1,
+    "9459c4bd5fa45be4884246c7cbbe46e5": 1
+  },
+  "equipmentID": [],
+  "flaskSlot": {
+    "Key": null,
+    "Value": 0
+  },
+  "skillTree": {
+    "Bullet Sword": false,
+    "Clone Inherit": false,
+    "Dash": true,
+    "Crystal": false,
+    "Bounce": false,
+    "Multiple mirage": false,
+    "Parry - Mirage Attack": false,
+    "Multiple Destruction": false,
+    "Dodge mirage": false,
+    "Controlled Destruction": false,
+    "Explosion": false,
+    "Dash-\"Actually I am\"": false,
+    "Aggressive Mirage": false,
+    "Parry HP": true,
+    "Time Stop": false,
+    "Dash-\"Here I am\"": false,
+    "Sword Throw": false,
+    "Parry": true,
+    "Dodge": false,
+    "Vulnerability": false,
+    "Chain Saw Sword": false,
+    "BlackHole": false,
+    "Time Mirage": true,
+    "Mirage Blink": false
+  },
+  "checkPoints": {
+    "17b11c26-f412-4785-9908-84058824bc72": true,
+    "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a": true
+  },
+  "closestPointID": "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a"
+}

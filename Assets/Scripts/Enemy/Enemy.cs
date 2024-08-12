@@ -1,10 +1,17 @@
 ﻿using System.Collections;
+using Character;
+using Inventory;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utility;
 
 namespace Enemy
 {
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(CapsuleCollider2D))]
+    [RequireComponent(typeof(EnemyStats))]
+    [RequireComponent(typeof(EntityFX))]
+    [RequireComponent(typeof(ItemDrop))]
     public class Enemy : Entity
     {
         [SerializeField] protected LayerMask whatIsPlayer;
@@ -17,7 +24,7 @@ namespace Enemy
         public float attackDistance;
         public float attackCoolDown;
         public float lastTimeAttacked;
-        public float  battleTime;
+        public float battleTime;
 
         [Header("Stunned info")] 
         public float stunnedDuration;
@@ -25,7 +32,7 @@ namespace Enemy
         protected bool canBeStunned;
         [SerializeField] protected GameObject counterImage;
         [SerializeField]private float defaultMoveSpeed;
-        [FormerlySerializedAs("isFrozenTime")] public bool FrozenTimeBeAttacked;
+        public bool isFrozenTime;
         public string lastAnimName { get;private set; }
 
         protected  override void Awake()
@@ -58,13 +65,13 @@ namespace Enemy
         {
             if (timeFrozen)
             {
-                FrozenTimeBeAttacked = true;
+                isFrozenTime = true;
                 moveSpeed = 0;
                 anim.speed = 0;
             }
             else
             {
-                FrozenTimeBeAttacked = false;
+                isFrozenTime = false;
                 moveSpeed = defaultMoveSpeed;
                 anim.speed = 1;
             }

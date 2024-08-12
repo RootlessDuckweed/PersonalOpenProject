@@ -16,7 +16,7 @@
         {
             base.Enter();
             _enemy.fx.InvokeRepeating("RedColorBlink",0,.1f);
-            _enemy.SetVelocity(-_enemy.facingDir*_enemy.stunnedDirection.x,_enemy.stunnedDirection.y);
+            //_enemy.SetVelocity(-_enemy.facingDir*_enemy.stunnedDirection.x,_enemy.stunnedDirection.y);
         }
 
         public override void Update()

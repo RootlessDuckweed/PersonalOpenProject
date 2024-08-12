@@ -1,11 +1,14 @@
 ﻿using Player.State.SuperState;
 using Player.Universal;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player.State
 {
     public class PlayerMoveState:PlayerGroundedState
     {
+        private float runTimer = 0;
+        private float generateDustDuration = 0.5f;
         public PlayerMoveState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
         {
           
@@ -21,7 +24,7 @@ namespace Player.State
         {
             base.Update();
             Movement();
-            
+            RunDust();
             if (player.inputDir.x == 0)
             {
                 stateMachine.ChangeState(player.idleState);
@@ -41,6 +44,16 @@ namespace Player.State
         {
             player. rb.velocity = new Vector2(player.moveSpeed * player.inputDir.x, player.rb.velocity.y);
 
+        }
+
+        private void RunDust()
+        {
+            runTimer -= Time.deltaTime;
+            if (runTimer <= 0f)
+            {
+                player.fx.PlayRunningDust();
+                runTimer = generateDustDuration;
+            }
         }
 
     }

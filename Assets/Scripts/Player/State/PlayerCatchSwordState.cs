@@ -13,6 +13,7 @@ namespace Player.State
         public override void Enter()
         {
             base.Enter();
+            player.fx.ScreenShake();
             sword = player.threwSword.transform;
             if (player.transform.position.x > sword.position.x && player.facingDir == 1)
             {

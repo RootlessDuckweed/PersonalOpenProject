@@ -2,27 +2,27 @@
 
 namespace Enemy.Enemy_Skeleton
 {
-    public class SkeletonAnimationEvent : MonoBehaviour
+    public class SkeletonAnimationEvent : EnemyAnimationEvent
     {
-        private SkeletonEnemy _enemy;
+        private SkeletonEnemy _enemySkeleton;
 
-        private void Awake()
+        protected override void Awake()
         {
-            _enemy = GetComponentInParent<SkeletonEnemy>();
+            _enemySkeleton = GetComponentInParent<SkeletonEnemy>();
         }
 
-        public void AnimationFinishTrigger()
+        public override void AnimationFinishTrigger()
         {
-            _enemy.AnimationFinishTrigger();
+            _enemySkeleton.AnimationFinishTrigger();
         }
 
-        public void OpenCounterAttackWindow()
+        public override void OpenCounterAttackWindow()
         {
-            _enemy.OpenCounterAttackWindow();
+            _enemySkeleton.OpenCounterAttackWindow();
         }
-        public void CloseCounterAttackWindow()
+        public override void CloseCounterAttackWindow()
         {
-            _enemy.CloseCounterAttackWindow();
+            _enemySkeleton.CloseCounterAttackWindow();
         }
     }
 }

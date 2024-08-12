@@ -7,6 +7,8 @@ namespace Player.State
 {
     public class PlayerDashState : PlayerState
     {
+        private float generateShadowTimer;
+        private float generateShadowDuration;
         public PlayerDashState(PlayerController _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
         {
             player.playerInput.GamePlay.Dash.started += Dash;
@@ -14,21 +16,41 @@ namespace Player.State
 
         private void Dash(InputAction.CallbackContext obj)
         {
-            if(!player.dashCold&&player.inputDir.x!=0)
+            if(!player.dashCold && player.inputDir.x!=0 && SkillManager.Instance.dashSkill.dashUnlocked)
                 stateMachine.ChangeState(player.dashState);
         }
 
         public override void Enter()
         {
-            base.Enter(); 
+            base.Enter();
+            generateShadowDuration = SkillManager.Instance.dashSkill.dashShowDuration;
+            player.stats.MakeInvincible(true);
             player. playerInput.GamePlay.Dash.canceled += DashCancel;
             SkillManager.Instance.cloneSkill.CreateCloneOnDashStart();
+            if (SkillManager.Instance.dodgeSkill.dodgeMirageUnlocked)
+            {
+                Collider2D[] colliders = player.GetCounterableEnemy();
+                foreach (var hit in colliders)
+                {
+                    Enemy.Enemy enemy = hit.GetComponent<Enemy.Enemy>();
+                    if (enemy != null)
+                    {
+                        if (player.stats.IsEvasion()&& enemy.CanBeStunned())
+                        {
+                            SkillManager.Instance.dodgeSkill.CreateCloneOnDodge();
+                        }
+                    }
+                }
+            }
         }
 
+        
+        
         public override void Update()
         {
             base.Update();
             DashContinueTimeCounter();
+            GenerateShadow();
             if(!player.isDashing&&player.CheckGround())
             {
                 stateMachine.ChangeState(player.idleState);
@@ -44,6 +66,8 @@ namespace Player.State
             }
           
         }
+        
+        
 
         public override void Exit()
         {
@@ -55,6 +79,7 @@ namespace Player.State
             player. dashCold = true; 
             player.isDashing = false;
             SkillManager.Instance.cloneSkill.CreateCloneOnDashOver();
+            player.stats.MakeInvincible(false);
         }
         private void DashCancel(InputAction.CallbackContext obj)
         {
@@ -89,6 +114,16 @@ namespace Player.State
             {
                 player.isDashing = false;
                 Debug.Log("is dashcold");
+            }
+        }
+
+        private void GenerateShadow()
+        {
+            generateShadowTimer -= Time.deltaTime;
+            if (generateShadowTimer <= 0)
+            {
+                generateShadowTimer = generateShadowDuration;
+                player.fx.GetOnShadowPool();
             }
         }
     }

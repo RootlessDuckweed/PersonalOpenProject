@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2940932031885997392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3419049876806357690}
+  - component: {fileID: 3046896450779822913}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3419049876806357690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940932031885997392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3046896450779822913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940932031885997392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14830bc8ee4474b82b98eda01b71689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingEquipments:
+  - itemData: {fileID: 11400000, guid: 46eedac77b19de54ab3c08c92788c40f, type: 2}
+    stackSize: 3
+  - itemData: {fileID: 11400000, guid: 9459c4bd5fa45be4884246c7cbbe46e5, type: 2}
+    stackSize: 1
+  - itemData: {fileID: 11400000, guid: cd5daa683ca53a9418a7d57da268715d, type: 2}
+    stackSize: 10
+  equipments: []
+  inventory: []
+  stash: []
+  inventorySlotParent: {fileID: 0}
+  stashSlotParent: {fileID: 0}
+  equipmentSlotParent: {fileID: 0}
+  flaskSlotParent: {fileID: 0}
+  statUIParent: {fileID: 0}
+  itemDataBase:
+  - {fileID: 11400000, guid: fbe81861287fe184fbd18d37294f6bef, type: 2}
+  - {fileID: 11400000, guid: d71ac630f422e3f49a7789c4cd09da19, type: 2}
+  - {fileID: 11400000, guid: 46eedac77b19de54ab3c08c92788c40f, type: 2}
+  - {fileID: 11400000, guid: 583f08db8fa9cbd49b4f27da8054838d, type: 2}
+  - {fileID: 11400000, guid: cd5daa683ca53a9418a7d57da268715d, type: 2}
+  - {fileID: 11400000, guid: 364945876c0b61649b675fb57ed5df69, type: 2}
+  - {fileID: 11400000, guid: 1d23b853c30564340851cb99e5d8e3da, type: 2}
+  - {fileID: 11400000, guid: 9459c4bd5fa45be4884246c7cbbe46e5, type: 2}
+  loadedItems: []
+  loadedEquipments: []
