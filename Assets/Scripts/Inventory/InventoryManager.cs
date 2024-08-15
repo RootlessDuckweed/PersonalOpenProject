@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Player.Universal;
 using SaveAndLoad;
 using UI;
 using UI.UI_InventorySlot;
@@ -69,12 +70,7 @@ namespace Inventory
             statUI = statUIParent.GetComponent<StatUI>();
         }
         
-
-        private void Start()
-        {
-            
-            
-        }
+        
 
         private void Update()
         {
@@ -403,8 +399,10 @@ namespace Inventory
              LoadInventoryAndStash(data);
                 
              LoadEquipments(data);
-
+             PlayerManager.Instance.Player.stats.currentHealth = PlayerManager.Instance.Player.stats.GetMaxHealth(); //读取装备上增加的血量
+             
              LoadFlaskSlot(data);
+             
          }
 
          public void NewGameAddOriginalItem()

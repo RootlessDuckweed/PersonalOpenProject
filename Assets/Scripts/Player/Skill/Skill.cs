@@ -1,5 +1,6 @@
 ﻿using Player.Universal;
 using UnityEngine;
+using Utility.FX.GlobalFXManager;
 
 namespace Player.Skill
 {
@@ -33,7 +34,7 @@ namespace Player.Skill
                 return true;
             }
             
-            player.fx.CreatePopUpText("CoolDown!");
+            FXGlobalManager.Instance.CreatePopUpText("CoolDown!",player.transform);
             return false;
         }
 

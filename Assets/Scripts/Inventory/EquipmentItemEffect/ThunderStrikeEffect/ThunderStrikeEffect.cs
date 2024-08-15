@@ -29,7 +29,7 @@ namespace Inventory.EquipmentItemEffect.ThunderStrikeEffect
 
         public override void ExecuteSpecialEffect(GameObject player = null, GameObject enemy = null)
         {
-            if (Time.time - lastTime >= 0.001f)
+            if (Time.time - lastTime >= 0.5f)
             {
                 base.ExecuteSpecialEffect(player, enemy);
                 var newThunderStrike = Instantiate(ThunderStrikePrefab);

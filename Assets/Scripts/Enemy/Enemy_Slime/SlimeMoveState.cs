@@ -16,7 +16,6 @@ namespace Enemy.Enemy_Slime
 
         public override void Update()
         {
-            Debug.Log("Move state update~");
             base.Update();
             slimeEnemy.SetVelocity(slimeEnemy.moveSpeed*slimeEnemy.facingDir,slimeEnemy.rb.velocity.y);
             if (slimeEnemy.CheckWall()||!slimeEnemy.CheckGround())

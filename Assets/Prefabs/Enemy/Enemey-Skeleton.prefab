@@ -125,11 +125,12 @@ MonoBehaviour:
   checkGroundRadius: 0.3
   groundCheck: {fileID: 335067358009014341}
   isFacingRight: 1
+  facingDir: 1
   checkWallRadius: 0.29
   wallCheck: {fileID: 5239450510700116921}
   checkCounterAttackRadius: 0
   counterAttackCheck: {fileID: 1626986153335175520}
-  knockbackForce: {x: 1, y: 1}
+  knockbackForce: {x: 2, y: 1}
   isKnockback: 0
   knockbackDura: 0.07
   canBeKnocked: 1
@@ -150,7 +151,7 @@ MonoBehaviour:
   stunnedDirection: {x: 3, y: 2}
   counterImage: {fileID: 2176931226428665993}
   defaultMoveSpeed: 0
-  FrozenTimeBeAttacked: 0
+  isFrozenTime: 0
 --- !u!114 &4401031526807819242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +186,6 @@ MonoBehaviour:
   screenShake: {fileID: 0}
   shakeMultiplier: 0
   shakePower: {x: 0, y: 0, z: 0}
-  popUpTextPrefab: {fileID: 1610536851537830908, guid: c18923ee81525e844bf9e9f10fce4a54, type: 3}
 --- !u!114 &920393517829442127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 1000
+    baseValue: 100
     modifiers: []
   damage:
     baseValue: 5
@@ -644,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AdditionalAilment: 2
   originalWeaponDamage: 5
+  stat: {fileID: 0}
   damageType: 1
 --- !u!1001 &321228639428233606
 PrefabInstance:

@@ -20,7 +20,6 @@ namespace UI.InGameUI.HealthBarUI
         {
             entity.onFlipped.AddListener(OnEntityFlipped);
             entity.stats.onDead.AddListener(OnEntityDead);
-           
         }
 
         private void OnDisable()

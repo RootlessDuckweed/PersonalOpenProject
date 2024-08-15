@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37014c5bdd2c4fd689bb799f720d52fc, type: 3}
   m_Name: ThunderGodAmulet
   m_EditorClassIdentifier: 
+  itemID: 1d23b853c30564340851cb99e5d8e3da
   itemType: 1
   itemName: ThunderGodAmulet
+  itemDescription: ItemDescription
+  itemCooldown: 0
   icon: {fileID: 1501868837, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   dropChance: 8
   equipmentType: 2
-  itemEffects:
-  - {fileID: 11400000, guid: 2456542d33506974b996cf3d9365303a, type: 2}
-  itemCooldown: 0
+  itemEffects: []
   strength: 0
   agility: 0
   intelligence: 20

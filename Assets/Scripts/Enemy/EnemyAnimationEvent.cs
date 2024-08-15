@@ -9,7 +9,6 @@ namespace Enemy
         protected virtual void Awake()
         {
             _enemy = GetComponentInParent<Enemy>();
-            print(_enemy.gameObject.name);
         }
 
         public virtual void AnimationFinishTrigger()
@@ -24,6 +23,11 @@ namespace Enemy
         public virtual void CloseCounterAttackWindow()
         {
             _enemy.CloseCounterAttackWindow();
+        }
+
+        public virtual void SelfDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }

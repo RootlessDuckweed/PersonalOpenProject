@@ -1,4 +1,5 @@
-﻿using Player.Skill;
+﻿using Enemy;
+using Player.Skill;
 using Player.Universal;
 using UnityEngine;
 
@@ -24,15 +25,18 @@ namespace Player.State
             Collider2D[] colliders = player.GetCounterableEnemy();
             foreach (var hit in colliders)
             {
+                var arrow = hit.GetComponent<ArrowController>();
+                if (arrow != null)
+                {
+                    SuccessfulCounterAttack();
+                    arrow.FlipArrow(true);
+                }
                 Enemy.Enemy enemy = hit.GetComponent<Enemy.Enemy>();
                 if ( enemy != null)
                 {
                     if (enemy.CanBeStunned())
                     {
-                        stateTimer = -1; //状态停止 
-                        player.anim.SetBool("SuccessfulCounterAttack",true);
-                        player.stats.MakeInvincible(true);
-                        isSucceed = true;
+                        SuccessfulCounterAttack();
                         float xOffset;
                         if (Random.value > 0.5f)
                         {
@@ -55,6 +59,14 @@ namespace Player.State
                 stateMachine.ChangeState(player.idleState);
             }
             
+        }
+
+        private void SuccessfulCounterAttack()
+        {
+            stateTimer = -1; //状态停止 
+            player.anim.SetBool("SuccessfulCounterAttack",true);
+            player.stats.MakeInvincible(true);
+            isSucceed = true;
         }
 
         public override void Exit()

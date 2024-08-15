@@ -41,6 +41,7 @@ namespace Enemy.Enemy_Slime
                 if (_playerTrans.position.x - slimeEnemy.transform.position.x > 1 && slimeEnemy.facingDir != 1)
                 {
                     slimeEnemy.Flip();
+                   
                 }
                 else if (_playerTrans.position.x - slimeEnemy.transform.position.x < -1 &&
                          slimeEnemy.facingDir != -1)

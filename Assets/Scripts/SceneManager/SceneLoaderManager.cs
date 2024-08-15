@@ -13,8 +13,9 @@ namespace SceneManager
         [SerializeField] private string currentScene="";
         [SerializeField] private UI_FadeScreen fadeScreen;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             DontDestroyOnLoad(this.gameObject);
             currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             //todo: test

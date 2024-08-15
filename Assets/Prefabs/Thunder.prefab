@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AdditionalAilment: 3
   originalWeaponDamage: 5
+  stat: {fileID: 0}
   damageType: 1
 --- !u!1 &6037661217848168170
 GameObject:
@@ -355,6 +356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 20
+  speed: 5
   attacker: {fileID: 0}
   damage: 0

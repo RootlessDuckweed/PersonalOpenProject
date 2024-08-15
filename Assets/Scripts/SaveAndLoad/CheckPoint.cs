@@ -12,10 +12,12 @@ namespace SaveAndLoad
         public string checkPointID; 
         private static readonly int Active = Animator.StringToHash("Active");
         [FormerlySerializedAs("activated")] public bool isActivated;
-        private void Start()
+
+        private void Awake()
         {
             anim = GetComponent<Animator>();
         }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {

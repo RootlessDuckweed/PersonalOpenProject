@@ -16,8 +16,8 @@ TagManager:
   - Enemy
   - UneffectedLight
   - Item
-  - 
-  - 
+  - PlayerSubObject
+  - Arrow
   - 
   - 
   - 

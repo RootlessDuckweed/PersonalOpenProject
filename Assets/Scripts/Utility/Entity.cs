@@ -174,14 +174,17 @@ namespace Utility
                 dir = 1;
             }
 
+            float x = Random.Range(knockbackForce.x, knockbackForce.x + 2);
+            float y = Random.Range(knockbackForce.y, knockbackForce.y + 2);
+    
             if (isCritical)
             {
-                rb.velocity = new Vector2(dir * knockbackForce.x*1.5f, knockbackForce.y+1);
+                rb.velocity = new Vector2(dir * x*1.5f, y+1);
                 yield return new WaitForSeconds(knockbackDura*1.5f);
             }
             else
             {
-                rb.velocity = new Vector2(dir * knockbackForce.x, knockbackForce.y);
+                rb.velocity = new Vector2(dir * x, y);
                 yield return new WaitForSeconds(knockbackDura);
             }
             

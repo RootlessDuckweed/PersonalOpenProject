@@ -3,10 +3,16 @@ using UnityEngine;
 
 namespace Enemy.Enemy_Slime
 {
-    public class SlimeIdleState : SlimeGroundState
+    public class SlimeIdleState : EnemyState
     {
+        protected SlimeEnemy slimeEnemy;
         public SlimeIdleState(EnemyStateMachine _stateMachine, Enemy enemyBase, string _animBoolName) : base(_stateMachine, enemyBase, _animBoolName)
         {
+            if (base.enemyBase is SlimeEnemy)
+            {
+                slimeEnemy = base.enemyBase as SlimeEnemy;
+            }
+            
         }
 
         public override void Enter()
@@ -24,7 +30,6 @@ namespace Enemy.Enemy_Slime
                     slimeEnemy.Flip(); 
                 }
                 stateMachine.ChangeState(slimeEnemy.moveState);
-                Debug.Log("goto move");
             }
         }
 

@@ -1,43 +1,45 @@
 {
   "currency": 0,
   "inventory": {
-    "46eedac77b19de54ab3c08c92788c40f": 1,
-    "9459c4bd5fa45be4884246c7cbbe46e5": 1
+    "9459c4bd5fa45be4884246c7cbbe46e5": 2,
+    "583f08db8fa9cbd49b4f27da8054838d": 1
   },
-  "equipmentID": [],
+  "equipmentID": [
+    "fbe81861287fe184fbd18d37294f6bef"
+  ],
   "flaskSlot": {
-    "Key": null,
-    "Value": 0
+    "Key": "46eedac77b19de54ab3c08c92788c40f",
+    "Value": 1
   },
   "skillTree": {
-    "Bullet Sword": false,
-    "Clone Inherit": false,
-    "Dash": true,
-    "Crystal": false,
-    "Bounce": false,
-    "Multiple mirage": false,
-    "Parry - Mirage Attack": false,
-    "Multiple Destruction": false,
-    "Dodge mirage": false,
-    "Controlled Destruction": false,
-    "Explosion": false,
     "Dash-\"Actually I am\"": false,
-    "Aggressive Mirage": false,
-    "Parry HP": true,
+    "Bullet Sword": false,
+    "Explosion": true,
+    "Parry HP": false,
     "Time Stop": false,
-    "Dash-\"Here I am\"": false,
-    "Sword Throw": false,
-    "Parry": true,
-    "Dodge": false,
-    "Vulnerability": false,
-    "Chain Saw Sword": false,
-    "BlackHole": false,
     "Time Mirage": true,
-    "Mirage Blink": false
+    "Dodge mirage": false,
+    "Dash-\"Here I am\"": true,
+    "Multiple Destruction": true,
+    "Dodge": false,
+    "Crystal": true,
+    "Bounce": true,
+    "BlackHole": true,
+    "Controlled Destruction": true,
+    "Parry": true,
+    "Sword Throw": true,
+    "Vulnerability": false,
+    "Multiple mirage": false,
+    "Clone Inherit": false,
+    "Mirage Blink": false,
+    "Dash": true,
+    "Parry - Mirage Attack": false,
+    "Chain Saw Sword": false,
+    "Aggressive Mirage": false
   },
   "checkPoints": {
     "17b11c26-f412-4785-9908-84058824bc72": true,
-    "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a": true
+    "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a": false
   },
-  "closestPointID": "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a"
+  "closestPointID": "17b11c26-f412-4785-9908-84058824bc72"
 }

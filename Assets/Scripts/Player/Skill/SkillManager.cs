@@ -21,10 +21,6 @@ namespace Player.Skill
         protected override void Awake()
         {
             base.Awake();
-        }
-
-        private void Start()
-        {
             dashSkill = GetComponent<DashSkill>();
             cloneSkill = GetComponent<CloneSkill>();
             swordSkill = GetComponent<SwordSkill>();
@@ -34,5 +30,6 @@ namespace Player.Skill
             parrySkill = GetComponent<ParrySkill>();
             dodgeSkill = GetComponent<DodgeSkill>();
         }
+        
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using Cinemachine;
 using Player.Universal;
 using TMPro;
+using UI.InGameUI.HealthBarUI;
 using UnityEngine;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
@@ -43,16 +44,15 @@ namespace Utility
         [SerializeField] private float shakeMultiplier;
         [SerializeField] private Vector3 shakePower;
 
-        [Header("Pop UP Text")] 
-        [SerializeField] private GameObject popUpTextPrefab;
-        
+        [Header("Hide Health bar")] 
+        [SerializeField] private GameObject healthBar;
         private void Awake()
         {
             shadowPool = new ObjectPool<GameObject>(CreateShadow, ShadowOnGet, ShadowOnRelease, ShadowOnDestroy);
             screenShake = GetComponent<CinemachineImpulseSource>();
+            healthBar = GetComponentInChildren<HealthBar>()?.gameObject;
         }
         
-
         private void Start()
         {
             _sr = GetComponentInChildren<SpriteRenderer>();
@@ -61,7 +61,6 @@ namespace Utility
 
        private IEnumerator  FlashHitFX()
        {
-           print("FlashHitFX");
            _sr.material = _hitMat;
            yield return new WaitForSeconds(_flashHitFX);
            _sr.material = _originalMat;
@@ -168,14 +167,9 @@ namespace Utility
            screenShake.GenerateImpulse();
        }
 
-       public void CreatePopUpText(string text)
-       {
-           float randomX = Random.Range(-1, 1);
-           float randomY = Random.Range(1, 3);
-           Vector3 offset = new Vector3(randomX, randomY,0);
-           var newText = Instantiate(popUpTextPrefab, transform.position + offset, Quaternion.identity);
-           newText.GetComponent<TextMeshPro>().text = text;
-       }
+      
+
+       #region ShadowPool
        
        private void ShadowOnDestroy(GameObject obj)
        {
@@ -195,7 +189,7 @@ namespace Utility
        private GameObject CreateShadow()
        {
            var shadow = Instantiate(afterImagePrefab);
-           shadow.GetComponent<AfterImageFX>().SetupAfterImage(colorLooseRate);
+           shadow.GetComponent<AfterImageFX>().SetupAfterImage(colorLooseRate,GetComponent<Entity>());
            shadow.SetActive(false);
            return shadow;
        }
@@ -209,6 +203,21 @@ namespace Utility
        {
            return shadowPool.Get();
        }
+       
+       #endregion
 
+       public void MakeTransparent(bool transparent)
+       {
+           if (transparent)
+           {
+               healthBar.SetActive(false);
+               _sr.color = Color.clear;
+           }
+           else
+           {
+               healthBar.SetActive(true);
+               _sr.color = Color.white;
+           }
+       }
     }
 }

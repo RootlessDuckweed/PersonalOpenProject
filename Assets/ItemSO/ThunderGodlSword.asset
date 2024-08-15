@@ -12,26 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37014c5bdd2c4fd689bb799f720d52fc, type: 3}
   m_Name: ThunderGodlSword
   m_EditorClassIdentifier: 
+  itemID: 9459c4bd5fa45be4884246c7cbbe46e5
   itemType: 1
   itemName: Thunder God Sword
   itemDescription: "Made by powerful thunder god , it possessed unimaginable power.
-    \n+20 damage \n+Thunder Strike Effect\n+ligthtning ailment."
+    \n+10 damage,critical chance, critical powr\n+5 strength, agility, armor ,evasion\n+Thunder
+    Strike Effect\n+ligthtning ailment."
+  itemCooldown: 0
   icon: {fileID: -1943397117, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   dropChance: 19
   equipmentType: 0
   itemEffects:
   - {fileID: 11400000, guid: 2456542d33506974b996cf3d9365303a, type: 2}
-  itemCooldown: 0
-  strength: 0
-  agility: 0
+  strength: 5
+  agility: 5
   intelligence: 0
   vitality: 0
-  damage: 20
-  critChance: 0
-  critPower: 0
+  damage: 10
+  critChance: 10
+  critPower: 10
   health: 0
-  armor: 0
-  evasion: 0
+  armor: 5
+  evasion: 5
   magicResistance: 0
   fireDamage: 0
   iceDamage: 0

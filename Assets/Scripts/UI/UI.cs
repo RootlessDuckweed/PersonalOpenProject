@@ -102,7 +102,7 @@ namespace UI
         public void DeadTextAppear()
         {
             deadPanel.SetActive(true);
-            var buttons = deadPanel.GetComponentsInChildren<Button>();
+            var buttons = deadPanel.GetComponentsInChildren<Button>(true);
             buttons[0].onClick.AddListener(SceneLoaderManager.Instance.ComeBackMainMenu);
             buttons[1].onClick.AddListener(SceneLoaderManager.Instance.ReStart);
             deadPanel.transform.DOScale(1, 1f);

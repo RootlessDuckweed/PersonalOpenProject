@@ -10,8 +10,9 @@ namespace GameManager
     public class GameManager : Singleton<GameManager>,ISaveManager
     {
         private CheckPoint[] checkPoints;
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             checkPoints = FindObjectsByType<CheckPoint>(FindObjectsSortMode.None);
         }
 

@@ -127,6 +127,7 @@ MonoBehaviour:
   checkGroundRadius: 0.32
   groundCheck: {fileID: 4392769384960122514}
   isFacingRight: 1
+  facingDir: 0
   checkWallRadius: 0.2
   wallCheck: {fileID: 6531947963282933528}
   checkCounterAttackRadius: 0.7
@@ -228,7 +229,7 @@ MonoBehaviour:
     baseValue: 5
     modifiers: []
   critChance:
-    baseValue: 100
+    baseValue: 10
     modifiers: []
   critPower:
     baseValue: 1.5
@@ -333,7 +334,7 @@ GameObject:
   - component: {fileID: 1934030594202925321}
   - component: {fileID: 1735561340383494425}
   - component: {fileID: 6481967724200772299}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +456,7 @@ GameObject:
   - component: {fileID: 8312456679176511766}
   - component: {fileID: 3817814936685588649}
   - component: {fileID: 2494967505884072430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +562,7 @@ GameObject:
   - component: {fileID: 1868577014100328319}
   - component: {fileID: 2603478731738049422}
   - component: {fileID: 3757020228867825410}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4392769384960122514}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 2129526047849458303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: -1.128, z: 0}
+  m_LocalPosition: {x: 0.178, y: -1.144, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -698,7 +699,7 @@ GameObject:
   - component: {fileID: 7612195484477441045}
   - component: {fileID: 77490963196113468}
   - component: {fileID: 2329790211536373545}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6531947963282933528}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +833,7 @@ GameObject:
   - component: {fileID: 8833980709478104440}
   - component: {fileID: 2511266293779094819}
   - component: {fileID: 3453882735633097524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CounterAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -933,7 +934,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6037876354527724212}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DotsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3667881713411950527}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CounterAttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -995,7 +996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4867725468046704293}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Attack_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1081,6 +1082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX-Dust
       objectReference: {fileID: 0}
+    - target: {fileID: 5836289904545831839, guid: 1ff8d2e7395241a4cad21f5ddc2b875c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1157,6 +1162,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4611991434265810462, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611991434265810462, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -1164,9 +1173,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX-Ailments
       objectReference: {fileID: 0}
+    - target: {fileID: 4962080259706983495, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447138194907829508, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5447138194907829508, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015242972024679320, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6015242972024679320, guid: 30a8ba299d623d3418219a239cddbebf, type: 3}
       propertyPath: m_IsActive

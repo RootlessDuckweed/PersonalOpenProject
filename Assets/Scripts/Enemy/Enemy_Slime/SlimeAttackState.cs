@@ -24,7 +24,6 @@ namespace Enemy.Enemy_Slime
         public override void Update()
         {
             base.Update();
-            Debug.Log(triggerCalled);
             if (triggerCalled)
             {
                 stateMachine.ChangeState(slimeEnemy.attackBusyState);

@@ -9,7 +9,7 @@ namespace Utility
     {
         public AilmentType AdditionalAilment = AilmentType.None;
         public float originalWeaponDamage; //角色配带的武器伤害加成
-        protected CharacterStats stat; //角色的自身属性加成
+        [SerializeField] protected CharacterStats stat; //角色的自身属性加成
         [SerializeField] protected DamageType damageType = DamageType.Physical;
         protected bool isCritical;
         protected virtual void  OnTriggerEnter2D(Collider2D other)

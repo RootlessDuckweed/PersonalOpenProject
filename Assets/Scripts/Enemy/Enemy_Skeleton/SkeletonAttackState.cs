@@ -33,7 +33,6 @@ namespace Enemy.Enemy_Skeleton
         {
             base.Exit();
             _enemy.lastTimeAttacked = Time.time;
-            Debug.Log("over");
         }
     }
 }

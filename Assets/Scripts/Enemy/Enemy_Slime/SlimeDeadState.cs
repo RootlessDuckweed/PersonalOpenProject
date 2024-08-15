@@ -16,14 +16,15 @@ namespace Enemy.Enemy_Slime
         public override void Enter()
         {
             base.Enter();
-           
+            slimeEnemy.cd.enabled = false;
+            slimeEnemy.rb.bodyType = RigidbodyType2D.Static;
         }
 
         public override void Update()
         {
             base.Update();
             if(triggerCalled)
-                MonoBehaviour.Destroy(slimeEnemy.gameObject);
+                MonoBehaviour.Destroy(slimeEnemy.gameObject,1.5f);
         }
 
         public override void Exit()

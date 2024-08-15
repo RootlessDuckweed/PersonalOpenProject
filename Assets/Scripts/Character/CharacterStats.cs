@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Utility;
 using Utility.EnumType;
+using Utility.FX.GlobalFXManager;
 using Random = UnityEngine.Random;
 
 
@@ -164,7 +165,7 @@ namespace Character
             }
 
             float lostHealth = originalHealth - currentHealth;
-            fx.CreatePopUpText($"-{lostHealth}");
+            FXGlobalManager.Instance.CreatePopUpText($"-{lostHealth}",gameObject.transform);
             if (currentHealth <= 0)
             {
                 Die();
@@ -200,7 +201,6 @@ namespace Character
             if (enemyStat.canCrit())
             {
                 isCrit = true;
-                print("ciritcal");
                 currentHealth -= GetCriticalDamage(GetFinalDamage(originalDamage,enemyStat.damage),enemyStat.critPower,enemyStat.strength);
             }
             else
@@ -328,6 +328,17 @@ namespace Character
             canBeHurt = !isInvincible;
         }
 
+        public virtual void MakeInvincibleAndCancelWithTimeFor(float duration)
+        {
+            canBeHurt = false;
+            Invoke(nameof(CancelInvincible),duration);
+        }
+
+        private void CancelInvincible()
+        {
+            canBeHurt = true;
+        }
+        
         public virtual string GetStatString(int number)
         {
             switch (number)

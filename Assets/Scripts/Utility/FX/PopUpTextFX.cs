@@ -1,22 +1,38 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
+using UnityEngine.Serialization;
+using Utility.FX.GlobalFXManager;
 
 namespace Utility
 {
     public class PopUpTextFX : MonoBehaviour
     {
         private TextMeshPro myText;
-        [SerializeField] private float speed;
+        [SerializeField] private float normalSpeed;
         [SerializeField] private float disappearanceSpeed;
         [SerializeField] private float colorDisappearanceSpeed;
         [SerializeField] private float lifeTime;
+        private float speed;
         private float textTimer;
 
         private void Awake()
         {
             myText = GetComponent<TextMeshPro>();
             textTimer = lifeTime;
+        }
+
+        private void OnEnable()
+        {
+            myText.color = Color.white;
+            textTimer = lifeTime;
+            speed = normalSpeed;
+        }
+
+        public void SetupPopText(string text)
+        {
+            myText.text = text;
         }
 
         private void Update()
@@ -33,9 +49,9 @@ namespace Utility
                     speed = disappearanceSpeed;
                 }
 
-                if (myText.color.a < 0)
+                if (myText.color.a <= 0.1f)
                 {
-                    Destroy(gameObject);
+                    FXGlobalManager.Instance.ReturnToTextPool(this.gameObject);   
                 }
                 
             }

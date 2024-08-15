@@ -154,11 +154,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.4784622, y: 2.2484825}
-      - {x: -2.5937872, y: 1.42608}
-      - {x: -2.3290877, y: 0.110916734}
-      - {x: -1.0056671, y: 0.06163478}
-      - {x: -0.46169376, y: 1.1139593}
+    - - {x: -1.8185577, y: 1.4140453}
+      - {x: -2.7589407, y: 0.49709654}
+      - {x: -2.7006774, y: -1.4580334}
+      - {x: -1.3772568, y: -1.3731291}
+      - {x: -0.68666935, y: 0.3325739}
   m_UseDelaunayMesh: 0
 --- !u!114 &7022324565193851000
 MonoBehaviour:
@@ -14699,7 +14699,7 @@ Transform:
   m_GameObject: {fileID: 2117837564680235982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.12, y: 1.66, z: 0}
+  m_LocalPosition: {x: -1.5799991, y: -0.0200001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14769,7 +14769,7 @@ Transform:
   m_GameObject: {fileID: 3738707593696230074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.927, y: 0.133, z: 0}
+  m_LocalPosition: {x: -2.3669991, y: -1.6800001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14802,7 +14802,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4564666109520329002}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0084, y: 0.0084, z: 0.0084}
   m_ConstrainProportionsScale: 1
@@ -14810,10 +14810,10 @@ RectTransform:
   - {fileID: 2266689096840491188}
   - {fileID: 4404614980851215613}
   m_Father: {fileID: 3503451714979115960}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.25, y: 2.51}
+  m_AnchoredPosition: {x: -0.20999908, y: 0.8299999}
   m_SizeDelta: {x: 256.8073, y: 52.8515}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7527937441144454349
@@ -14917,7 +14917,7 @@ Transform:
   m_GameObject: {fileID: 4904693341805693289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 1.48, z: 0}
+  m_LocalPosition: {x: -0.43999907, y: -0.20000005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15080,7 +15080,7 @@ Transform:
   m_GameObject: {fileID: 5199022353790900567}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.94, z: 0}
+  m_LocalPosition: {x: -0.48, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15207,7 +15207,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 76.5, y: -6.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7064246836887870847}
@@ -15244,7 +15244,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1231093690573178201
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -15279,8 +15279,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.11362302, y: 0.87503934}
-  m_Size: {x: 3.2512689, y: 1.7819316}
+  m_Offset: {x: -0.28198993, y: -0.6908431}
+  m_Size: {x: 2.9515283, y: 1.7805523}
   m_Direction: 1
 --- !u!114 &3870096041032868987
 MonoBehaviour:
@@ -15380,7 +15380,6 @@ MonoBehaviour:
   screenShake: {fileID: 0}
   shakeMultiplier: 0
   shakePower: {x: 0, y: 0, z: 0}
-  popUpTextPrefab: {fileID: 1610536851537830908, guid: c18923ee81525e844bf9e9f10fce4a54, type: 3}
 --- !u!114 &8505459964263337792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15417,7 +15416,8 @@ MonoBehaviour:
     m_Bits: 8
   checkGroundRadius: 0.3
   groundCheck: {fileID: 1530712833723914589}
-  isFacingRight: 0
+  isFacingRight: 1
+  facingDir: 1
   checkWallRadius: 0.3
   wallCheck: {fileID: 7231965184347919331}
   checkCounterAttackRadius: 0
@@ -15447,8 +15447,9 @@ MonoBehaviour:
   slimeType: 0
   amountOfSlimesToCreate: 2
   slimePrefab: {fileID: 7373025900750258406}
-  maxCreationVelocity: {x: 4, y: 8}
-  minCreationVelocity: {x: -4, y: 4}
+  maxCreationVelocity: {x: -2, y: 8}
+  minCreationVelocity: {x: 2, y: 4}
+  healthBar: {fileID: 4564666109520329002}
 --- !u!1 &8362677577340338850
 GameObject:
   m_ObjectHideFlags: 0
@@ -15474,7 +15475,7 @@ Transform:
   m_GameObject: {fileID: 8362677577340338850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.47, y: 0.97, z: 0}
+  m_LocalPosition: {x: -1.9299991, y: -0.71000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

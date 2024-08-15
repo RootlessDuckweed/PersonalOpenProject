@@ -25,7 +25,6 @@ namespace Enemy.Enemy_Slime
             if (CanAttack())
             {
                 stateMachine.ChangeState(slimeEnemy.battleState);
-                Debug.Log("goto battle");
             }
         }
 
