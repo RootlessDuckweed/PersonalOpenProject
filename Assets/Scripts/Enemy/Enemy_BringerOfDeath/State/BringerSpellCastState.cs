@@ -1,4 +1,5 @@
 ﻿using Enemy.Enemy_BringerOfDeath.SuperState;
+using Player.Universal;
 using UnityEngine;
 
 namespace Enemy.Enemy_BringerOfDeath.State
@@ -24,10 +25,11 @@ namespace Enemy.Enemy_BringerOfDeath.State
             if (CanCast())
             {
                var spell= bringerEnemy.CastSpell();
-               if (currentSpells == bringerEnemy.amountsOfSpells - 1)
+               if (currentSpells == bringerEnemy.amountsOfSpells)
                {
                    spell.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
                }
+               bringerEnemy.fx.ScreenShake();
             }
             else if(currentSpells>=bringerEnemy.amountsOfSpells)
             {

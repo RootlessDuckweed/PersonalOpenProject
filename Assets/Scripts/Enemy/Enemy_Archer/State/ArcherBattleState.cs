@@ -36,7 +36,7 @@ namespace Enemy.State
             var hit = archerEnemy.IsDetectedPlayer();
             if (hit)
             {
-                if (archerEnemy.DistanceWithPlayer() < 2 && Random.Range(0,100)<50)
+                if (archerEnemy.DistanceWithPlayer() < 4 && Random.Range(0,100)<50)
                 {
                     stateMachine.ChangeState(archerEnemy.jumpBehindState);
                 }

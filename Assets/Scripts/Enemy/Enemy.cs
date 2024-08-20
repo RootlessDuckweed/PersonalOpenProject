@@ -98,7 +98,7 @@ namespace Enemy
         
         #region Animation Event
         
-        public void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+        public void AnimationFinishTrigger() => stateMachine?.currentState?.AnimationFinishTrigger();
         
         #endregion
 

@@ -38,8 +38,8 @@
     "Aggressive Mirage": false
   },
   "checkPoints": {
-    "17b11c26-f412-4785-9908-84058824bc72": true,
-    "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a": false
+    "e90674cc-d1f0-4c4d-9792-3cb71b18bb1a": false,
+    "17b11c26-f412-4785-9908-84058824bc72": true
   },
   "closestPointID": "17b11c26-f412-4785-9908-84058824bc72"
 }

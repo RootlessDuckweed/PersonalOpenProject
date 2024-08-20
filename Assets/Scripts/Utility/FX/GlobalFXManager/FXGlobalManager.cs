@@ -54,13 +54,11 @@ namespace Utility.FX.GlobalFXManager
        
         public GameObject GetOnPopTextPool()
         {
-            print("Get!");
             return popTextPool.Get();
         }
        
         public void ReturnToTextPool(GameObject obj)
         {
-            print("Return!");
             popTextPool.Release(obj);
         }
         #endregion

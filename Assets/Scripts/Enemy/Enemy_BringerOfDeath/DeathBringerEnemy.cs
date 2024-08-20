@@ -66,7 +66,7 @@ namespace Enemy.Enemy_BringerOfDeath
             }
         }
 
-        private RaycastHit2D GroundBelow(Vector3 target) => Physics2D.Raycast(target, Vector2.down, 2, whatIsGround);
+        private RaycastHit2D GroundBelow(Vector3 target) => Physics2D.Raycast(target, Vector2.down, 5, whatIsGround);
 
         private bool SomethingIsAround(Vector3 target) =>
             Physics2D.BoxCast(target, surroundingCheckSize, 0, Vector2.zero, 0, whatIsGround);

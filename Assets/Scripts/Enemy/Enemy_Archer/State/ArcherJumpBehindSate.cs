@@ -12,9 +12,9 @@ namespace Enemy.State
         {
             base.Enter();
             if(Random.Range(0,100)<50)
-                archerEnemy.rb.AddForce(new Vector2(-archerEnemy.facingDir * 12, 12),ForceMode2D.Impulse);
+                archerEnemy.rb.AddForce(new Vector2(-archerEnemy.facingDir * Random.Range(6,12), Random.Range(6,12)),ForceMode2D.Impulse);
             else
-                archerEnemy.rb.AddForce(new Vector2(archerEnemy.facingDir * 14, 14),ForceMode2D.Impulse);
+                archerEnemy.rb.AddForce(new Vector2(archerEnemy.facingDir *Random.Range(8,14), Random.Range(8,14)),ForceMode2D.Impulse);
         }
 
         public override void Update()
